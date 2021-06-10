@@ -11,7 +11,7 @@
 
 <script>
 import LeagueInfo from "../components/LeagueInfo";
-import FavoriteGames from "../components/FavoriteGames";
+import FavoriteGames from "../components/FavoriteGamesMax3";
 import LoginPage from "../pages/LoginPage";
 // import RegisterPage from "../pages/RegisterPage.vue";
 export default {
