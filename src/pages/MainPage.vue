@@ -1,8 +1,10 @@
 <template>
   <div class="container">
-    <h1 class="title">Main Page</h1>
+    <h1 class="title">Main Page </h1>
+
     <LoginPage v-if="!$root.store.username"></LoginPage>
     <FavoriteGames v-else></FavoriteGames>
+
     <LeagueInfo></LeagueInfo>
   </div>
 </template>
@@ -11,12 +13,12 @@
 import LeagueInfo from "../components/LeagueInfo";
 import FavoriteGames from "../components/FavoriteGames";
 import LoginPage from "../pages/LoginPage";
+// import RegisterPage from "../pages/RegisterPage.vue";
 export default {
   components: {
     LeagueInfo, 
     LoginPage, 
-    FavoriteGames
-  }
+    FavoriteGames  }
 };
 </script>
 

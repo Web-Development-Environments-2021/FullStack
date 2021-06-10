@@ -2,6 +2,7 @@
   <div class="container">
     <h1 class="title">Register</h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
+      
       <b-form-group
         id="input-group-username"
         label-cols-sm="3"
@@ -23,6 +24,55 @@
         <b-form-invalid-feedback v-if="!$v.form.username.alpha">
           Username alpha
         </b-form-invalid-feedback>
+        
+      </b-form-group>
+
+
+     <b-form-group
+        id="input-group-firstname"
+        label-cols-sm="3"
+        label="Firstname:"
+        label-for="firstname"
+      >
+        <b-form-input
+          id="firstname"
+          v-model="$v.form.firstname.$model"
+          type="text"
+        :state="validateState('firstname')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.firstname.required">
+          Username is required
+        </b-form-invalid-feedback>
+  
+        <b-form-invalid-feedback v-if="!$v.form.firstname.alpha">
+          Username alpha
+        </b-form-invalid-feedback>
+        
+      </b-form-group>
+
+
+    <b-form-group
+        id="input-group-lastname"
+        label-cols-sm="3"
+        label="Lastname:"
+        label-for="lastname"
+      >
+        <b-form-input
+          id="lastname"
+          v-model="$v.form.lastname.$model"
+          type="text"
+          :state="validateState('lastname')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.lastname.required">
+          lastname is required
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-else-if="!$v.form.lastname.length">
+          lastname length should be between 3-8 characters long
+        </b-form-invalid-feedback>
+        <b-form-invalid-feedback v-if="!$v.form.lastname.alpha">
+          lastname alpha
+        </b-form-invalid-feedback>
+        
       </b-form-group>
 
       <b-form-group
@@ -156,6 +206,14 @@ export default {
         length: (u) => minLength(3)(u) && maxLength(8)(u),
         alpha
       },
+      firstname: {
+        required,
+        alpha
+      },
+        lastname: {
+        required,
+        alpha
+      },
       country: {
         required
       },
@@ -163,9 +221,16 @@ export default {
         required,
         length: (p) => minLength(5)(p) && maxLength(10)(p)
       },
+ 
       confirmedPassword: {
         required,
         sameAsPassword: sameAs("password")
+      },
+      email: {
+        required
+      },
+      profileImage: {
+        required
       }
     }
   },
@@ -182,10 +247,19 @@ export default {
     async Register() {
       try {
         const response = await this.axios.post(
-          "https://test-for-3-2.herokuapp.com/user/Register",
+          "http://localhost/Register",
           {
+
             username: this.form.username,
-            password: this.form.password
+            firstname:this.form.firstname,
+            lastname:this.form.lasttname,
+            country: this.form.country,
+            password: this.form.password,
+            confirmedpassword: this.form.password,
+            email: this.form.email,
+            profileImage :this.form.profileImage
+
+
           }
         );
         this.$router.push("/login");
