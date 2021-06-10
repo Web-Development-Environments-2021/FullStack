@@ -31,14 +31,15 @@
      <b-form-group
         id="input-group-firstname"
         label-cols-sm="3"
-        label="Firstname:"
+        label="First Name:"
         label-for="firstname"
       >
         <b-form-input
           id="firstname"
           v-model="$v.form.firstname.$model"
           type="text"
-        :state="validateState('firstname')"
+          :state="validateState('firstname')"
+
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.firstname.required">
           Username is required
@@ -54,7 +55,7 @@
     <b-form-group
         id="input-group-lastname"
         label-cols-sm="3"
-        label="Lastname:"
+        label="Last Name:"
         label-for="lastname"
       >
         <b-form-input
@@ -62,6 +63,7 @@
           v-model="$v.form.lastname.$model"
           type="text"
           :state="validateState('lastname')"
+
         ></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.lastname.required">
           lastname is required
@@ -74,6 +76,10 @@
         </b-form-invalid-feedback>
         
       </b-form-group>
+
+
+      
+  
 
       <b-form-group
         id="input-group-country"
@@ -118,6 +124,8 @@
         </b-form-invalid-feedback>
       </b-form-group>
 
+
+
       <b-form-group
         id="input-group-confirmedPassword"
         label-cols-sm="3"
@@ -139,6 +147,46 @@
           The confirmed password is not equal to the original password
         </b-form-invalid-feedback>
       </b-form-group>
+
+
+
+      <b-form-group
+        id="input-group-email"
+        label-cols-sm="3"
+        label="Email:"
+        label-for="email"
+      >
+        <b-form-input
+          id="email"
+          v-model="$v.form.email.$model"
+          type="text"
+          :state="validateState('email')"
+        ></b-form-input>
+        <b-form-invalid-feedback v-if="!$v.form.email.required">
+          email is required
+        </b-form-invalid-feedback>
+       
+        
+      </b-form-group>
+
+      <b-form-group
+      id="input-group-profileImage"
+      label-cols-sm="3"
+      label="Profile Image:"
+      label-for="profileImage"
+    >
+      <b-form-input
+        id="profileImage"
+        v-model="$v.form.profileImage.$model"
+        type="text"
+      ></b-form-input>
+      <b-form-invalid-feedback v-if="!$v.form.profileImage.required">
+        profileImage is required
+      </b-form-invalid-feedback>
+            
+              
+            </b-form-group>
+
 
       <b-button type="reset" variant="danger">Reset</b-button>
       <b-button
@@ -186,12 +234,13 @@ export default {
     return {
       form: {
         username: "",
-        firstName: "",
-        lastName: "",
+        firstname: "",
+        lastname: "",
         country: null,
         password: "",
         confirmedPassword: "",
         email: "",
+        profileImage:"",
         submitError: undefined
       },
       countries: [{ value: null, text: "", disabled: true }],
@@ -246,8 +295,9 @@ export default {
     },
     async Register() {
       try {
+        console.log("in register func!");
         const response = await this.axios.post(
-          "http://localhost/Register",
+          "http://localhost:3000/register",
           {
 
             username: this.form.username,
@@ -263,16 +313,17 @@ export default {
           }
         );
         this.$router.push("/login");
-        // console.log(response);
+        console.log(response);
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
     },
     onRegister() {
-      // console.log("register method called");
+      console.log("register method called");
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
+        console.log(this.$v.form.errors);
         return;
       }
       // console.log("register method go");
