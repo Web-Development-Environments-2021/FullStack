@@ -1,13 +1,20 @@
 <template>
   <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand :to="{ name: 'main' }">Superliga</b-navbar-brand>
+
+    <b-navbar class="bg-dark" toggleable="lg" type="dark" variant="info">
+         
+<a class="navbar-brand" href="#">
+      <img src="./assets/Games-Soccer-icon.png"  width="40" height="38">
+    </a>
+      <b-navbar-brand  :to="{ name: 'main' }">Superliga</b-navbar-brand>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
 
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
           <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
+          <b-nav-item :to="{ name: 'teamCard' }">teamCard</b-nav-item>
+
 
 
         </b-navbar-nav>
@@ -52,7 +59,9 @@ export default {
 
 <style lang="scss">
 @import "@/scss/form-style.scss";
-
+body{
+  background-color: gray;
+}
 #app {
   // font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

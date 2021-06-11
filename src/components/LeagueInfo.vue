@@ -22,7 +22,6 @@
       :hour="next_game.time" 
       :key="next_game.id"></GamePreview>
       </b-card-text>
-      <b-button href="#" variant="primary">Go somewhere</b-button>
     </b-card>
   </div>
 </template>
@@ -76,8 +75,7 @@ export default {
 <style>
 .league-preview {
   display: inline-block;
-  width: 250px;
-  height: 200px;
+  width: 60%;
   position: relative;
   margin: 10px 10px;
   border-style: solid;

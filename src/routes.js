@@ -28,6 +28,11 @@ const routes = [
     component: () => import("./pages/FavoriteGamesPage")
   },
   {
+    path: "/teamCard",
+    name: "teamCard",
+    component: () => import("./pages/TeamPage.vue")
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound

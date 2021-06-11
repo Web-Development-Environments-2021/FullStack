@@ -44,7 +44,6 @@
         <b-form-invalid-feedback v-if="!$v.form.firstname.required">
           Username is required
         </b-form-invalid-feedback>
-  
         <b-form-invalid-feedback v-if="!$v.form.firstname.alpha">
           Username alpha
         </b-form-invalid-feedback>
@@ -68,13 +67,9 @@
         <b-form-invalid-feedback v-if="!$v.form.lastname.required">
           lastname is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-else-if="!$v.form.lastname.length">
-          lastname length should be between 3-8 characters long
-        </b-form-invalid-feedback>
         <b-form-invalid-feedback v-if="!$v.form.lastname.alpha">
           lastname alpha
-        </b-form-invalid-feedback>
-        
+        </b-form-invalid-feedback>  
       </b-form-group>
 
 
