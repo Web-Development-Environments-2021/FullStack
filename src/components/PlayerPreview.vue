@@ -1,5 +1,22 @@
 <template>
-  <div class="game-preview">
+<div>
+  <b-card
+    :title="name"
+    :img-src="picture"
+    img-alt="Image"
+    img-top
+    tag="article"
+    style="max-width: 20rem;"
+    class="mb-2"
+  >
+    <b-card-text>
+      position: {{position}}
+    </b-card-text>
+
+    <b-button href="#" variant="warning">player page</b-button>
+  </b-card>
+</div>
+  <!-- <div class="game-preview">
     <div :title="id" class="game-title">
       <b>Player Name:</b> {{ name }}
     </div>
@@ -7,7 +24,7 @@
       <li> position: {{ position }}</li>
       <li> picture: {{ picture }}</li>
     </ul>
-  </div>
+  </div> -->
 </template>
 
 <script>

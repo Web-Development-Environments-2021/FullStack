@@ -59,9 +59,7 @@ export default {
 
 <style lang="scss">
 @import "@/scss/form-style.scss";
-body{
-  background-color: gray;
-}
+
 #app {
   // font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

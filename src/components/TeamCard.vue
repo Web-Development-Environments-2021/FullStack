@@ -1,24 +1,23 @@
 <template>
     <div class="team-preview">
       <b-card
-      img-alt="Image"
+      :img-alt="logo"
       tag="article"
-      style="max-width: 20rem;"
+      style="max-width: 100%;"
       class="mb-2"
     >
       <b-card-title>{{name}}</b-card-title>
       <b-card-text>
-        Logo: {{ logo }}
         <br/>
         Coach: {{ coach }}
-        <br/>
+        <br/><div class="players">
         <PlayerPreview
         v-for="p in players"
         :name="p.name"
         :picture="p.image"
         :position="p.position"
         :key="p.name">
-        </PlayerPreview>
+        </PlayerPreview></div>
         <br/>
         <GamePreview
       v-for="g in team_history"
@@ -90,10 +89,9 @@ export default {
 </script>
 
 <style>
-.league-preview {
+.team-preview {
   display: inline-block;
-  width: 250px;
-  height: 200px;
+  width: 80%;
   position: relative;
   margin: 10px 10px;
   border-style: solid;
@@ -102,15 +100,23 @@ export default {
   border-color:rgb(44, 89, 116);
 }
 
-.league-preview .league-title {
+.team-preview .team-title {
   text-align: center;
   text-transform: uppercase;
   color:  rgb(111, 155, 197);
 }
 
-.league-preview .league-content {
+.team-preview .team-content {
   width: 100%;
   overflow: hidden;
 }
+.players{
+    display: flex;
+    width: 100%;
+    columns: 5;
+    flex-grow: 1;
+     width: 33%;
+}
+
 
 </style>

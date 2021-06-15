@@ -1,3 +1,6 @@
+
+
+
 <template>
   <div class="game-preview">
     <div :title="id" class="game-title">
