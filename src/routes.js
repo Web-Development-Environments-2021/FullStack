@@ -30,7 +30,12 @@ const routes = [
   {
     path: "/teamCard",
     name: "teamCard",
-    component: () => import("./pages/TeamPage.vue")
+    component: () => import("./pages/TeamPage")
+  },
+  {
+    path:"/playerPage",
+    name:"playerPage",
+    component:()=>import("./pages/PlayerPage")
   },
   {
     path: "*",

@@ -1,6 +1,7 @@
 <template>
 <div>
   <b-card
+ 
     :title="name"
     :img-src="picture"
     img-alt="Image"
@@ -8,29 +9,25 @@
     tag="article"
     style="max-width: 20rem;"
     class="mb-2"
+    href="#!"
   >
     <b-card-text>
       position: {{position}}
     </b-card-text>
 
-    <b-button href="#" variant="warning">player page</b-button>
+    <b-button  :to="{ name: 'playerPage', params: { playerId: player_id } }" href="#" variant="warning">player page</b-button>
   </b-card>
 </div>
-  <!-- <div class="game-preview">
-    <div :title="id" class="game-title">
-      <b>Player Name:</b> {{ name }}
-    </div>
-    <ul class="game-content">
-      <li> position: {{ position }}</li>
-      <li> picture: {{ picture }}</li>
-    </ul>
-  </div> -->
+
 </template>
 
 <script>
 export default {
   name: "PlayerPreview",
   props: {
+      player_id:{
+        type: Number
+      },
       position: {
         type: Number,
         required: true
@@ -71,7 +68,7 @@ export default {
 }
 
 .game-preview .game-content {
-  width: 100%;
+  width: 250px;
   overflow: hidden;
 }
 

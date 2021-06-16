@@ -40,6 +40,7 @@ export default {
       season: "", 
       stage: "",
       season_id:"",
+      next_game:[]
     };
   },
   methods: {

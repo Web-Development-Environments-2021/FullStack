@@ -10,14 +10,16 @@
       <b-card-text>
         <br/>
         Coach: {{ coach }}
-        <br/><div class="players">
+        <br/><div class="container">
+          <div class="row">
         <PlayerPreview
         v-for="p in players"
         :name="p.name"
         :picture="p.image"
         :position="p.position"
+        :player_id="p.player_id"
         :key="p.name">
-        </PlayerPreview></div>
+        </PlayerPreview></div></div>
         <br/>
         <GamePreview
       v-for="g in team_history"

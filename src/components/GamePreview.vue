@@ -21,23 +21,23 @@ export default {
   props: {
       id: {
         type: Number,
-        required: true
+        //required: true
       },
       hostTeam: {
         type: String,
-        required: true
+        //required: true
       },
       guestTeam: {
         type: String,
-        required: true
+        //required: true
       },
       date: {
         type: String,
-        required: true
+        //required: true
       },
       hour: {
         type: String,
-        required: true
+        //required: true
       }
   }, 
   mounted(){
