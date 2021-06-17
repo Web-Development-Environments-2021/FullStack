@@ -57,5 +57,7 @@ export default {
 
 <style>
 
-
+.container{
+  background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/v1623869488/1610049840_MarcusRashford_gdsx8r.jpg");
+}
 </style>
