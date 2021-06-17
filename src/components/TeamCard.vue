@@ -1,10 +1,8 @@
 <template>
     <div class="team-preview">
+      <img class="mx-auto" style="width: 200px;" :src="logo">
       <b-card
-      :img-alt="logo"
-      tag="article"
-      style="max-width: 100%;"
-      class="mb-2"
+
     >
       <b-card-title>{{name}}</b-card-title>
       <b-card-text>
@@ -91,34 +89,11 @@ export default {
 </script>
 
 <style>
-.team-preview {
-  display: inline-block;
-  width: 80%;
-  position: relative;
-  margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:rgb(44, 89, 116);
+.team-preview{
+  align-items: center;
+
 }
 
-.team-preview .team-title {
-  text-align: center;
-  text-transform: uppercase;
-  color:  rgb(111, 155, 197);
-}
-
-.team-preview .team-content {
-  width: 100%;
-  overflow: hidden;
-}
-.players{
-    display: flex;
-    width: 100%;
-    columns: 5;
-    flex-grow: 1;
-     width: 33%;
-}
 
 
 </style>

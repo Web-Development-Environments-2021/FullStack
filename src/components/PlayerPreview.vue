@@ -1,5 +1,26 @@
 <template>
-<div>
+<div  class="player">
+  <div  class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+    
+    <img
+      :src="picture"
+      class="img-fluid" href="#"
+      width="100px"
+      :to="{ name: 'playerPage', params: { playerId: player_id } }"
+    />
+    <a href="#">
+      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+    </a>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{name}}</h5>
+      position: {{position}}
+        <b-button  :to="{ name: 'playerPage', params: { playerId: player_id } }" href="#" variant="warning">player page</b-button>
+
+  </div>
+
+</div>
+<!-- <div>
   <b-card
  
     :title="name"
@@ -9,7 +30,6 @@
     tag="article"
     style="max-width: 20rem;"
     class="mb-2"
-    href="#!"
   >
     <b-card-text>
       position: {{position}}
@@ -17,7 +37,7 @@
 
     <b-button  :to="{ name: 'playerPage', params: { playerId: player_id } }" href="#" variant="warning">player page</b-button>
   </b-card>
-</div>
+</div> -->
 
 </template>
 
@@ -49,27 +69,19 @@ export default {
 </script>
 
 <style>
-.game-preview {
-  display: inline-block;
-  width: 250px;
+
+
+
+.player{
+    border-style: solid;
+  border-radius: 100px;
+  border-width: 4px;
+  border-color:rgb(5, 5, 5);
   height: 200px;
-  position: relative;
-  margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:cadetblue;
-}
-
-.game-preview .game-title {
+  width:200px;
   text-align: center;
-  text-transform: uppercase;
-  color:  rgb(111, 197, 157);
-}
-
-.game-preview .game-content {
-  width: 250px;
-  overflow: hidden;
+  font-size: 0.75rem;
+  background-color: rgb(197, 196, 196);
 }
 
 
