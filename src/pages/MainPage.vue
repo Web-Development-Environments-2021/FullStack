@@ -11,15 +11,47 @@
 </template>
 
 <script>
+
+
+
+
+
 import LeagueInfo from "../components/LeagueInfo";
 import FavoriteGames from "../components/FavoriteGamesMax3";
 import LoginPage from "../pages/LoginPage";
+
+
 // import RegisterPage from "../pages/RegisterPage.vue";
 export default {
   components: {
     LeagueInfo, 
     LoginPage, 
-    FavoriteGames  }
+    FavoriteGames  },
+
+  methods: {
+    async  GetTeamDetails(){
+      try{
+          const teamDetails = await this.axios.get(
+            "http://localhost:3000/Team/AllTeamsDetails"
+          
+          );
+          console.log(this.$root.store.login);
+          localStorage.setItem('teamDetails', JSON.stringify(teamDetails));
+
+      } 
+      catch (err) {
+        console.log(err.response);
+        this.form.submitError = err.response.data.message;
+      }
+
+    
+    }
+  },
+  created(){
+    this.GetTeamDetails();
+
+  }
+
 };
 </script>
 
