@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="main">
 
     <h1 class="title">Main Page </h1>
 
@@ -25,7 +25,7 @@ export default {
 
 <style>
 
-.container{
-  background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/v1623869488/1610049840_MarcusRashford_gdsx8r.jpg");
+.main{
+  background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/c_scale,h_700,w_1300/v1623869488/1610049840_MarcusRashford_gdsx8r.jpg");
 }
 </style>

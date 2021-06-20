@@ -14,6 +14,8 @@
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
           <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
           <b-nav-item :to="{ name: 'teamCard' }">teamCard</b-nav-item>
+          <b-nav-item :to="{ name: 'leagueManagment' }">leagueManagment</b-nav-item>
+
 
 
 

@@ -38,6 +38,11 @@ const routes = [
     component:()=>import("./pages/PlayerPage")
   },
   {
+    path:"/leagueManagment",
+    name:"leagueManagment",
+    component:()=>import("./pages/LeagueManagmentPage")
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound
