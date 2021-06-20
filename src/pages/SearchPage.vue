@@ -60,14 +60,13 @@
 </template>
 
 <script>
+  var retrievedObject = localStorage.getItem('teams');
 export default {
  data() {
-     var retrievedObject = localStorage.getItem('teamDetails');
     return {
       searchQuery:retrievedObject,
-      selected:"",
-      
-    };
+      selected:""
+          };
   },
 }
 </script>

@@ -31,12 +31,22 @@ export default {
   methods: {
     async  GetTeamDetails(){
       try{
-          const teamDetails = await this.axios.get(
+          const Details = await this.axios.get(
             "http://localhost:3000/Team/AllTeamsDetails"
           
           );
+
+
           console.log(this.$root.store.login);
-          localStorage.setItem('teamDetails', JSON.stringify(teamDetails));
+          console.log("print the details!!")
+          console.log(Details);
+          
+          localStorage.setItem('teams', JSON.stringify(Details.data.teams));
+          localStorage.setItem('players', JSON.stringify(Details.data.players));
+          localStorage.setItem('players_name', JSON.stringify(Details.data.players_name));
+          localStorage.setItem('teams_name', JSON.stringify(Details.data.teams_name));
+
+
 
       } 
       catch (err) {
@@ -48,6 +58,7 @@ export default {
     }
   },
   created(){
+    console.log("in created main!!!")
     this.GetTeamDetails();
 
   }

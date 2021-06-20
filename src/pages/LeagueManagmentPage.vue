@@ -130,7 +130,6 @@
 
 <script>
 import countries from "../assets/countries";
-import Datepicker from '../../node_modules/vuejs-datepicker';
 
 import {
   required
