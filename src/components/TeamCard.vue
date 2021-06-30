@@ -67,13 +67,13 @@ export default {
       console.log("response");
       try {
           let teamId=939;
-        const response = await this.axios.get(
-          `http://localhost:3000/team/teamFullDetails/${teamId}`,
-        );
-        const team = response.data;
-        this.name=team.team_details.name;
-        this.logo=team.team_details.logo;
-        this.coach=team.team_details.coach;
+        // const response = await this.axios.get(
+        //   `http://localhost:3000/team/teamFullDetails/${teamId}`,
+        // );
+        const response=localStorage.getItem("teams")
+        const team = response[teamId];
+        this.name=team.teamName;
+        this.logo=team.teamLogo;
         this.players=team.players;
         this.team_history=team.team_history;
         this.team_future=team.team_future;

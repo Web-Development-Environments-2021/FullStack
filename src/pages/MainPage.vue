@@ -45,6 +45,8 @@ export default {
           localStorage.setItem('players', JSON.stringify(Details.data.players));
           localStorage.setItem('players_name', JSON.stringify(Details.data.players_name));
           localStorage.setItem('teams_name', JSON.stringify(Details.data.teams_name));
+          localStorage.setItem('players_list', JSON.stringify(Details.data.players_list));
+
 
 
 

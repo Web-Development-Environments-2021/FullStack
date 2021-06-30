@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div>
     
     <h1 class="title">Search Page</h1>
@@ -63,18 +63,14 @@
   var retrievedObject = localStorage.getItem('teams');
 export default {
  data() {
+     var retrievedObject = localStorage.getItem('teamDetails');
     return {
       searchQuery:retrievedObject,
-      selected:""
-          };
+      selected:"",
+      
+    };
+    
+      
   },
 }
 </script>
-
-<style scoped>
-
-#search-input {
-  margin-left: 20px; 
-  width: 500px; 
-}
-</style>

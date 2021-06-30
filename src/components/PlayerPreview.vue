@@ -1,22 +1,19 @@
 <template>
 <div  class="player">
   <div  class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-    
+    <router-link :to="{ name: 'playerPage', params: { playerId: player_id } }">
     <img
       :src="picture"
       class="img-fluid" href="#"
       width="100px"
-      :to="{ name: 'playerPage', params: { playerId: player_id } }"
-    />
-    <a href="#">
-      <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-    </a>
+      
+    /></router-link>
+
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{name}}</h5>
+    <router-link :to="{ name: 'playerPage', params: { playerId: player_id } }"><h5 class="card-title">{{name}}</h5></router-link>
       position: {{position}}
-        <b-button  :to="{ name: 'playerPage', params: { playerId: player_id } }" href="#" variant="warning">player page</b-button>
-
+       
   </div>
 
 </div>
@@ -49,21 +46,17 @@ export default {
         type: Number
       },
       position: {
-        type: Number,
-        required: true
+        type: Number
       },
       name: {
-        type: String,
-        required: true
+        type: String
       },
       picture: {
-        type: String,
-        required: true
+        type: String
       }
       
   }, 
   mounted(){
-    console.log("player preview mounted")
   } 
 };
 </script>
@@ -84,6 +77,8 @@ export default {
   background-color: rgb(197, 196, 196);
 }
 
-
+.img-fluid{
+  border-radius: 50px;
+}
 
 </style>
