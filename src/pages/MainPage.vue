@@ -38,14 +38,12 @@ export default {
 
 
           console.log(this.$root.store.login);
-          console.log("print the details!!")
           console.log(Details);
           
           localStorage.setItem('teams', JSON.stringify(Details.data.teams));
           localStorage.setItem('players', JSON.stringify(Details.data.players));
           localStorage.setItem('players_name', JSON.stringify(Details.data.players_name));
           localStorage.setItem('teams_name', JSON.stringify(Details.data.teams_name));
-          localStorage.setItem('players_list', JSON.stringify(Details.data.players_list));
 
 
 

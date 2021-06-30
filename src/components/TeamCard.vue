@@ -12,7 +12,7 @@
           <div class="row">
         <PlayerPreview
         v-for="p in players"
-        :name="p.name"
+        :name="p.playerName"
         :picture="p.image"
         :position="p.position"
         :player_id="p.player_id"
@@ -64,20 +64,38 @@ export default {
   },
   methods: {
     async teamInfo(){
-      console.log("response");
       try {
-          let teamId=939;
-        // const response = await this.axios.get(
-        //   `http://localhost:3000/team/teamFullDetails/${teamId}`,
-        // );
-        const response=localStorage.getItem("teams")
-        const team = response[teamId];
+        console.log("///in team info");
+
+        let teamId=939;
+        let  teams_json=localStorage.getItem("teams");
+        let  players_json=localStorage.getItem("players");
+        // extracting the objects from json//
+        let players_list=JSON.parse(players_json);
+        console.log(players_list);
+        let teams_list = JSON.parse(teams_json);
+
+
+        const team = teams_list[teamId];
+
+        let players_ids=team.players;
+        // console.log(players_ids);
+
+        for (let i = 0; i < players_ids.length; i++) {
+          let id=players_ids[i];
+          console.log(id);
+          this.players.push(players_list[id]);
+
+        }
+
+        console.log("///this is after for");
+        console.log(this.players);
         this.name=team.teamName;
         this.logo=team.teamLogo;
-        this.players=team.players;
         this.team_history=team.team_history;
         this.team_future=team.team_future;
-      } catch (error) {
+      } 
+      catch (error) {
       }
     }
   },
