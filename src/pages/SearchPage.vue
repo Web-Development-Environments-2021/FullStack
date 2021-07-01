@@ -41,17 +41,12 @@
     <div v-if="ifPlayers" class="form-row">
     <div class="form-group col-md-6">
       <label for="inputTeam">Team name:</label>
-      <select v-model="teanName" id="inputState" class="form-control">
-        <option selected>Choose...</option>
-            <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-    <option value="6">6</option>
-    <option value="7">7</option>
-    <option value="8">8</option>
-      </select>
+
+        <div>
+          <b-form-select v-model="selected_team" :options="teams_names"></b-form-select>
+        <div class="mt-3">Selected: <strong>{{ selected_team }}</strong></div>
+        </div>
+
     </div>
     <div class="form-group col-md-4">
       <label for="inputPosition">Position:</label>
@@ -142,9 +137,14 @@ export default {
       ifPlayers:true,
       teamName:"",
       sortBy:"",
+      teams_names:[],
+      selected_team: null
+
       
     };
  },
+
+
  methods:{
     showInfo(){
       var players_json = localStorage.getItem('players');
@@ -227,10 +227,18 @@ export default {
         });
       }
 
-    }     
+    },
+      team_from_local(){
+      let teams_names = localStorage.getItem('teams_name');
+      teams_names=JSON.parse(teams_names);
+      return teams_names;
+  }     
   },
+
+  
   mounted(){
     this.showInfo()
+    this.teams_names=this.team_from_local();
   }
 };
 </script>
