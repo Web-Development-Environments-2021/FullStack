@@ -58,23 +58,28 @@ export default {
 
 <style scoped>
 .card{
-  width: 365px;
-  height: 500px;
+  width: 150px;
+  height: 200px;
   border-style:none;
-  background-color: #fee6c2;
+  background-color: whitesmoke;
+  margin-left: 10px;
+    align-items: center;
+
+
 }
 .card-img-top {
-  width: 100%;
-  height: 65%;
+  width: 80%;
   object-fit: cover;
+  margin-top: 8px;
+
 }
 small{
   color: black;
   border: none;
-  border-left: 1px solid rgb(179, 178, 178);
+  border-left: 1px solid whitesmoke;
   padding-left: 10px;
   padding-right: 10px;
-  height: 1.5em;
+  height: 1em;
   bottom: 0;
   font-family: sans-serif;;
   letter-spacing: 1px;
@@ -87,6 +92,7 @@ h3{
   padding-bottom: 5px;
   font-family: monospace;
   font-weight: bold;
+  font-size: 17px;
 }
 .teamPreview{
     text-decoration: none;

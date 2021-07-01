@@ -63,11 +63,13 @@ export default {
       console.log("response");
       try {
           let playerId=this.$route.params.playerId;;
-        const response = await this.axios.get(
-          `http://localhost:3000/player/playerInfoCard/${playerId}`,
-        );
-        const player = response.data;
-        this.name=player.name;
+          let  players_json=localStorage.getItem("players");
+        let players_list=JSON.parse(players_json);
+        // const response = await this.axios.get(
+        //   `http://localhost:3000/player/playerInfoCard/${playerId}`,
+        // );
+        let player = players_list[playerId];
+        this.name=player.playerName;
         this.image=player.image;
         this.position=player.position;
         this.team_name=player.team_name;

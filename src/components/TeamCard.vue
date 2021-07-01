@@ -15,7 +15,8 @@
         :name="p.playerName"
         :picture="p.image"
         :position="p.position"
-        :player_id="p.player_id"
+        :player_id="p.playerId"
+        :teamName="p.team_name"
         :key="p.name">
         </PlayerPreview></div></div>
         <br/>
@@ -67,15 +68,13 @@ export default {
       try {
         console.log("///in team info");
 
-        let teamId=939;
+        let teamId=this.$route.params.teamId;
         let  teams_json=localStorage.getItem("teams");
         let  players_json=localStorage.getItem("players");
         // extracting the objects from json//
         let players_list=JSON.parse(players_json);
         console.log(players_list);
         let teams_list = JSON.parse(teams_json);
-
-
         const team = teams_list[teamId];
 
         let players_ids=team.players;

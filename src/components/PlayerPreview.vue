@@ -12,29 +12,13 @@
   </div>
   <div class="card-body">
     <router-link :to="{ name: 'playerPage', params: { playerId: player_id } }"><h5 class="card-title">{{name}}</h5></router-link>
+      team: {{teamName}}
+      <br>
       position: {{position}}
        
   </div>
 
 </div>
-<!-- <div>
-  <b-card
- 
-    :title="name"
-    :img-src="picture"
-    img-alt="Image"
-    img-top
-    tag="article"
-    style="max-width: 20rem;"
-    class="mb-2"
-  >
-    <b-card-text>
-      position: {{position}}
-    </b-card-text>
-
-    <b-button  :to="{ name: 'playerPage', params: { playerId: player_id } }" href="#" variant="warning">player page</b-button>
-  </b-card>
-</div> -->
 
 </template>
 
@@ -53,7 +37,10 @@ export default {
       },
       picture: {
         type: String
-      }
+      },
+      teamName:{
+        type: String
+      },
       
   }, 
   mounted(){
@@ -67,18 +54,27 @@ export default {
 
 .player{
     border-style: solid;
-  border-radius: 100px;
-  border-width: 4px;
-  border-color:rgb(5, 5, 5);
-  height: 200px;
-  width:200px;
+  border-radius: 20px;
+  border-width: 2px;
+  border-color:rgb(116, 115, 115);
+  height: 180px;
+  width:180px;
   text-align: center;
   font-size: 0.75rem;
-  background-color: rgb(197, 196, 196);
+  background-color: whitesmoke;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .img-fluid{
   border-radius: 50px;
+  margin-bottom:-14px ;
+}
+.card-title{
+  font-size: 14px;
+  color:black;
+  margin-bottom:1px ;
+  margin-top:0px ;
 }
 
 </style>
