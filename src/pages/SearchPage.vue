@@ -159,17 +159,22 @@ export default {
         }
     },
     showByQuery(){
-      console.log(this.position);
-      console.log(this.position>0);
       if (this.ifPlayers){
         this.players_by_query=[];
         for(let player in this.players){
+          let good=false;
           if (this.players[player].playerName.toLowerCase().includes(this.searchQuery)){
+            good=true;
             if(this.position>0){
-              if (this.players[player].position==this.position)
-                this.players_by_query.push(this.players[player]);
+              if (this.players[player].position!=this.position){
+                good=false;
+              }
             }
-            else{
+            if(this.selected_team!=null){
+              if (!this.players[player].team_name.includes(this.selected_team))
+                good=false;
+            }
+            if (good){
               this.players_by_query.push(this.players[player]);
             }
           }
@@ -230,15 +235,14 @@ export default {
     },
       team_from_local(){
       let teams_names = localStorage.getItem('teams_name');
-      teams_names=JSON.parse(teams_names);
-      return teams_names;
+      this.teams_names=JSON.parse(teams_names);
   }     
   },
 
   
   mounted(){
     this.showInfo()
-    this.teams_names=this.team_from_local();
+    this.team_from_local();
   }
 };
 </script>

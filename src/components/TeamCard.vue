@@ -67,18 +67,24 @@ export default {
     async teamInfo(){
       try {
         console.log("///in team info");
-
+        
         let teamId=this.$route.params.teamId;
+        console.log(teamId);
         let  teams_json=localStorage.getItem("teams");
         let  players_json=localStorage.getItem("players");
         // extracting the objects from json//
         let players_list=JSON.parse(players_json);
         console.log(players_list);
         let teams_list = JSON.parse(teams_json);
-        const team = teams_list[teamId];
+
+
+        let team = teams_list[teamId];
+
 
         let players_ids=team.players;
-        // console.log(players_ids);
+                        console.log("--------");
+
+        console.log(players_ids);
 
         for (let i = 0; i < players_ids.length; i++) {
           let id=players_ids[i];
@@ -86,7 +92,6 @@ export default {
           this.players.push(players_list[id]);
 
         }
-
         console.log("///this is after for");
         console.log(this.players);
         this.name=team.teamName;

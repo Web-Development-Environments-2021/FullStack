@@ -44,7 +44,7 @@ export default {
 
  data() {
     return {
-      playerId:0,
+    playerId:0,
     name:"",
     image:"",
     position:0,
@@ -62,7 +62,7 @@ export default {
     async playerInfo(){
       console.log("response");
       try {
-          let playerId=this.$route.params.playerId;;
+          let playerId=this.$route.params.playerId;
           let  players_json=localStorage.getItem("players");
         let players_list=JSON.parse(players_json);
         // const response = await this.axios.get(
@@ -79,7 +79,7 @@ export default {
         this.birthcountry=player.birthcountry;
         this.height=player.height;
         this.weight=player.weight;
-        this.playerId=player.player_id;
+        this.playerId=player.playerId;
       } catch (error) {
       }
     }
