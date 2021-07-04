@@ -43,6 +43,11 @@ const routes = [
     component:()=>import("./pages/LeagueManagmentPage")
   },
   {
+    path:"/About",
+    name:"About",
+    component:()=>import("./pages/AboutPage")
+  },
+  {
     path: "*",
     name: "notFound",
     component: NotFound

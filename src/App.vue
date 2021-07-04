@@ -10,9 +10,9 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
-          <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
-          <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
-          <b-nav-item :to="{ name: 'leagueManagment' }">leagueManagment</b-nav-item>
+          <b-nav-item :to="{ name: 'leagueManagment' }">LeagueManagment</b-nav-item>
+          <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
+
         </b-navbar-nav>
         <b-navbar-nav class="ml-auto" v-if="!$root.store.username">
           <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>

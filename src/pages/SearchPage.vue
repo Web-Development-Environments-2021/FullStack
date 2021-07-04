@@ -1,28 +1,5 @@
  <template>
-<!-- <div>
-    <h1 class="title">Search Page</h1>
-  <b-form class="formSearch" @submit.prevent="showByQuery">
 
-    <b-input-group prepend="Search Query:" id="search-input" >
-      <b-form-input v-model="searchQuery"></b-form-input>
-      <b-input-group-append>
-        <b-button variant="success" type="submit"  >Search</b-button>
-      </b-input-group-append>
-    </b-input-group>
-      <br/>
-      search: {{searchQuery}}
-      <div class="container">
-          <div class="row">
-        <PlayerPreview
-        v-for="p in players_by_query"
-        :name="p.playerName"
-        :picture="p.image"
-        :position="p.position"
-        :player_id="p.playerId"
-        :key="p.name">
-        </PlayerPreview></div></div>
-  </b-form>
-  </div> -->
   <div>
     <h1 class="title">Search Page</h1>
 
@@ -64,7 +41,7 @@
     </div>
     </div>
 
-
+      
       <b-button variant="success" type="submit" id="button"  >Search</b-button>
       </b-form>
       <div v-if="ifPlayers" class="col-auto my-1">
