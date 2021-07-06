@@ -57,9 +57,7 @@
     >
       Login failed: {{ form.submitError }}
     </b-alert>
-    <!-- <b-card class="mt-3" header="Form Data Result">
-      <pre class="m-0">{{ form }}</pre>
-    </b-card> -->
+
   </div>
 </template>
 
@@ -72,6 +70,7 @@ export default {
       form: {
         username: "",
         password: "",
+        user_id:"",
         submitError: undefined
       }
     };
@@ -95,7 +94,6 @@ export default {
     async Login() {
       try {
         console.log("in login section");
-
         const response = await this.axios.post(
           "http://localhost:3000/Login",
           {
@@ -105,7 +103,16 @@ export default {
         );
         console.log("-----------response is:----------")
         console.log(response);
+        if(response.data.user_id){
+          sessionStorage.setItem('user_id', response.data.user_id);
+          sessionStorage.setItem('FavoriteGames',response.data.favoriteGames);
+          // sessionStorage.setItem('FavoritePlayers',res.favoritePlayers);
+          // sessionStorage.setItem('FavoriteTeam',res.favoritePlayers);
+
+
+        }
         this.$root.loggedIn = true;
+        this.$root.store.user_id=response.data.user_id;
         console.log(this.$root.store.login);
         this.$root.store.login(this.form.username);
         this.$router.push("/");
@@ -121,7 +128,6 @@ export default {
       if (this.$v.form.$anyError) {
         return;
       }
-      // console.log("login method go");
 
       this.Login();
     }

@@ -10,7 +10,10 @@
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
         <b-nav-item :to="{ name: 'search' }">Search</b-nav-item>
-          <b-nav-item :to="{ name: 'leagueManagment' }">LeagueManagment</b-nav-item>
+
+          <b-navbar-nav class="ml-auto" v-if="$root.store.user_id==1">
+            <b-nav-item :to="{ name: 'leagueManagment' }">LeagueManagment</b-nav-item>
+          </b-navbar-nav>
           <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
 
         </b-navbar-nav>
@@ -42,6 +45,8 @@ export default {
       const response = await this.axios.post(
           "http://localhost:3000/logout"
         );
+      sessionStorage.removeItem('user_id');
+      this.$root.store.user_id=-1;
       this.$root.loggedIn = false;
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");

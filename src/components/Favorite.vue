@@ -3,7 +3,7 @@
   <b-container>
 
       <span class="hears">
-        <svg v-if="isFavorite" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+        <svg v-if="this" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
   <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 </svg>
 <svg v-else v-on:click="addToFavorite" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart" viewBox="0 0 16 16">
@@ -23,6 +23,7 @@ export default {
   data() {
     return {
       isFavorite: false,
+      FavoriteGames:[]
     };
   },
   props: {
@@ -37,10 +38,12 @@ export default {
     async checkFavorite() {
       try {
         const id = this.playerId;
-        const response = await this.axios.get(
-          `http://localhost:3000/user/favoritePlayers/`
+        let FavoriteGames=sessionStorage.getItem("FavoriteGames");
+        
+        let response = await this.axios.get(
+          `http://localhost:3000/user/favoritePlayers`
         );
-        consol.log(response.data)
+        console.log(response.data);
         for( let p in response.data){
             if (p.player_id==id){
                 this.isFavorite = true;
@@ -54,7 +57,7 @@ export default {
     },
     async addToFavorite(event) {
       try {
-        const response = await this.axios.post(
+        let response = await this.axios.post(
           `http://localhost:3000/user/addFavoritePlayer`,
           {
               playerId: this.playerId
