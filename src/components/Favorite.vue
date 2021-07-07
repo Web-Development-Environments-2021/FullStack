@@ -67,8 +67,8 @@ export default {
       // this.FavoriteGames
       if( this.isFavorite){
         // to add to favorite
-        // this.addToFavorite();
         this.FavoriteGames.push(this.playerId)
+        this.addToFavorite();
       }
       else{
         //to delete from fav server
@@ -76,19 +76,33 @@ export default {
           if (this.FavoriteGames[i]==this.playerId)
             this.FavoriteGames.splice(i, 1);
         }
-
+          this.deleteFromFavorite();
       }
     }
     ,
-    async addToFavorite(event) {
+    async addToFavorite() {
       try {
-        let response = await this.axios.post(
+         await this.axios.post(
           `http://localhost:3000/user/addFavoritePlayer`,
           {
               playerId: this.playerId
           }
         );
         this.isFavorite = true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+      async deleteFromFavorite() {
+      try {
+        await this.axios.delete(
+          `http://localhost:3000/user/deleteFavoritePlayer`,
+          {
+              playerId: this.playerId
+          }
+        );
+        this.isFavorite = false;
       } catch (error) {
         console.log(error);
       }
