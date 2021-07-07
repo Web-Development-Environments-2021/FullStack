@@ -3,10 +3,11 @@
     <GamePreview
       v-for="g in games"
       :id="g.game_id" 
-      :hostTeam="g.home_team" 
-      :guestTeam="g.away_team" 
+      :home_team="g.home_team" 
+      :away_team="g.away_team" 
       :date="g.date" 
-      :hour="g.time" 
+      :time="g.time" 
+      :stadium="g.stadium"
       :key="g.id"></GamePreview>
   </div>
 </template>

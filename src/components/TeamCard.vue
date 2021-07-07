@@ -20,14 +20,14 @@
         :key="p.name">
         </PlayerPreview></div></div>
         <br/>
-        <GamePreview
+        <PastGame
       v-for="g in team_history"
       :id="g.game_id" 
       :hostTeam="g.home_team" 
       :guestTeam="g.away_team" 
       :date="g.date" 
       :hour="g.time" 
-      :key="g.id"></GamePreview>
+      :key="g.id"></PastGame>
       <br/>
       <GamePreview
       v-for="g in team_future"
@@ -45,13 +45,15 @@
 
 <script>
 import GamePreview from "./GamePreview.vue";
+import PastGame from "./PastGame.vue";
 import PlayerPreview from './PlayerPreview.vue';
 
 export default {
   name: "Leagueinfo",
   components: {
     GamePreview,
-    PlayerPreview
+    PlayerPreview,
+    PastGame
   }, 
  data() {
     return {
@@ -74,7 +76,6 @@ export default {
         let  players_json=localStorage.getItem("players");
         // extracting the objects from json//
         let players_list=JSON.parse(players_json);
-        console.log(players_list);
         let teams_list = JSON.parse(teams_json);
 
 
@@ -82,22 +83,20 @@ export default {
 
 
         let players_ids=team.players;
-                        console.log("--------");
 
-        console.log(players_ids);
 
         for (let i = 0; i < players_ids.length; i++) {
           let id=players_ids[i];
-          console.log(id);
           this.players.push(players_list[id]);
 
         }
         console.log("///this is after for");
-        console.log(this.players);
         this.name=team.teamName;
         this.logo=team.teamLogo;
         this.team_history=team.team_history;
         this.team_future=team.team_future;
+        console.log(this.team_history);
+        console.log(this.team_future);
       } 
       catch (error) {
       }

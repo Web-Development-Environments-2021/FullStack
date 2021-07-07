@@ -1,12 +1,15 @@
 <template>
-  <div class="main">
+  <div class="container">
 
     <h1 class="title">Main Page </h1>
+    <div class="grid-main">
+ <div><LeagueInfo></LeagueInfo></div>
+    <div><LoginPage v-if="!$root.store.username"></LoginPage>
+    <div v-else><h2>Favorite games:</h2>
+    <FavoriteGames ></FavoriteGames></div></div>
+    </div>
 
-    <LoginPage v-if="!$root.store.username"></LoginPage>
-    <FavoriteGames v-else></FavoriteGames>
-
-    <LeagueInfo></LeagueInfo>
+    
   </div>
 </template>
 
@@ -68,7 +71,22 @@ export default {
 
 <style>
 
-.main{
-  background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/c_scale,h_700,w_1300/v1623869488/1610049840_MarcusRashford_gdsx8r.jpg");
+div.container{
+  
+width: 100%;
+  /* background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/c_scale,h_900,w_1300/v1623869488/1610049840_MarcusRashford_gdsx8r.jpg");
+height: 100%;
+background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+.grid-main{
+  display: grid;
+  grid-template-columns: 50% 50%;
+      grid-column-gap: 2%;
+
+}
+.body{
+  background-color: rgb(212, 211, 211);
 }
 </style>

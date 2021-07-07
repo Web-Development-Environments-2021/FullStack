@@ -1,28 +1,21 @@
 <template>
     <div class="league-preview">
-      <b-card
-      img-alt="Image"
-      tag="article"
-      style="max-width: 20rem;"
-      class="mb-2"
-    >
-      <b-card-title>{{leagueName}}</b-card-title>
-      <b-card-text>
+      <h2> {{leagueName}}</h2>
         Season: {{ season }}
         <br/>
         Stage: {{ stage }}
         <br/>
         Season_id: {{season_id}}
         <br/>
+        <br>
         Next_game:<GamePreview
       :id="next_game.game_id" 
-      :hostTeam="next_game.home_team" 
-      :guestTeam="next_game.away_team" 
+      :home_team="next_game.home_team" 
+      :away_team="next_game.away_team" 
       :date="next_game.date" 
-      :hour="next_game.time" 
+      :time="next_game.time" 
+      :stadium="next_game.stadium"
       :key="next_game.id"></GamePreview>
-      </b-card-text>
-    </b-card>
   </div>
 </template>
 
@@ -76,13 +69,10 @@ export default {
 <style>
 .league-preview {
   display: inline-block;
-  width: 60%;
+  width: 100%;
   position: relative;
-  margin: 10px 10px;
-  border-style: solid;
-  border-radius: 10px;
-  border-width: 5px;
-  border-color:rgb(44, 89, 116);
+  background-color: whitesmoke;
+
 }
 
 .league-preview .league-title {
@@ -95,5 +85,6 @@ export default {
   width: 100%;
   overflow: hidden;
 }
+
 
 </style>
