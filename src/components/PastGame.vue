@@ -82,6 +82,8 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
+
 .game-preview {
   display: inline-block;
   width: 200px;
@@ -94,6 +96,8 @@ export default {
   color:black;
   font-size: 18px;
     display: grid;
+        font-family: "Merienda", Helvetica, Arial;
+
 
 
 }
@@ -102,6 +106,8 @@ export default {
   text-align: center;
   text-transform: uppercase;
   color:  rgb(10, 10, 10);
+          font-family: "Merienda", Helvetica, Arial;
+
 
 }
 
@@ -111,7 +117,7 @@ export default {
 }
 
 .game{
-  width: 100%;
+  width: 590px;
   background-color: whitesmoke;
   opacity: 90%;
   display: flex;
@@ -122,7 +128,7 @@ export default {
 }
 .grid{
   display: grid;
-    grid-template-columns: 140px 80px 20px 55px 20px 80px 200px;
+    grid-template-columns: 140px 80px 20px 30px 30px 80px 200px;
     grid-column-gap: 8px;
     align-items: center;
     padding: 10px 0 12px 0;
@@ -130,6 +136,9 @@ export default {
     width: 100%;
     font-size: 14px;
     margin-left: 10px;
+          font-family: 'Aladin', cursive;
+
+    
 }
 .teams{
     display: flex;

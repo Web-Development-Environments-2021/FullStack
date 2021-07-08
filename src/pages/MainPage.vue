@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
-
-    <h1 class="title">Main Page </h1>
+  <div class="main">
+<br>
+<br>
     <div class="grid-main">
  <div><LeagueInfo></LeagueInfo></div>
     <div><LoginPage v-if="!$root.store.username"></LoginPage>
-    <div v-else><h2>Favorite games:</h2>
+    <div class="favorite" v-else><h2>My favorite games:</h2>
     <FavoriteGames ></FavoriteGames></div></div>
     </div>
 
@@ -14,10 +14,6 @@
 </template>
 
 <script>
-
-
-
-
 
 import LeagueInfo from "../components/LeagueInfo";
 import FavoriteGames from "../components/FavoriteGamesMax3";
@@ -71,22 +67,30 @@ export default {
 
 <style>
 
-div.container{
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
+
+.main{
   
 width: 100%;
-  /* background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/c_scale,h_900,w_1300/v1623869488/1610049840_MarcusRashford_gdsx8r.jpg");
-height: 100%;
+  background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/v1625744808/Qtyjme_d6mwpa.jpg");
+height: 550px;
 background-position: center;
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
+    background-repeat: "no-repeat";
+  background-size: '100% auto';
+      font-family: "Merienda", Helvetica, Arial;
+
 }
 .grid-main{
   display: grid;
-  grid-template-columns: 50% 50%;
-      grid-column-gap: 2%;
+  grid-template-columns: 48% 50%;
+      grid-column-gap: 4%;
 
 }
-.body{
-  background-color: rgb(212, 211, 211);
+.favorite{
+      font-family: 'Aladin', cursive;
+
+
 }
 </style>

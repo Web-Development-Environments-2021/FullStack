@@ -4,13 +4,13 @@
     <h1 class="title">Search Page</h1>
 
 <b-form class="formSearch" @submit.prevent="showByQuery">
-<div>
-    <b-button-group class="mx-1">
-      <b-button v-on:click="selectPlayers" style="background-color : orange;">players</b-button>
-      <b-button v-on:click="selectTeams" style="background-color : orange;">teams</b-button>
-    </b-button-group>
+<div class="gridButton">
+    
+      <b-button v-on:click="selectPlayers" style="background-color : darkorange;">players</b-button>
+      <b-button v-on:click="selectTeams" style="background-color : darkorange;">teams</b-button>
+    
 </div>
-    <b-input-group prepend="Search:" id="search-input">
+    <b-input-group  id="search-input">
       <b-form-input v-model="searchQuery"></b-form-input>
     </b-input-group> 
     <br>
@@ -21,15 +21,13 @@
 
         <div>
           <b-form-select v-model="selected_team" :options="teams_names"></b-form-select>
-        <div class="mt-3">Selected: <strong>{{ selected_team }}</strong></div>
         </div>
 
     </div>
     <div class="form-group col-md-4">
       <label for="inputPosition">Position:</label>
       <select v-model="position" id="inputState" class="form-control">
-        <option selected>Choose...</option>
-            <option value="1">1</option>
+    <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
     <option value="4">4</option>
@@ -239,7 +237,7 @@ export default {
 
 #button{
   width: 80%;
-  background-color : orange;
+  background-color : darkorange;
 }
 .input-group{
   width: 40%;
@@ -248,6 +246,8 @@ export default {
   position: relative;
   margin: auto;
   text-align: center;
+    align-items: center;
+
 }
 .input-group-text{
   font-size: 12px;
@@ -259,6 +259,15 @@ export default {
 }
 .form-row{
 margin: auto;
+align-items: center;
+}
+.gridButton{
+  display: inline-grid;
+  grid-template-columns: 80px 80px;
+  grid-column-gap: 5px;
+  align-items: center;
+  color: black;
+
 }
 
 

@@ -1,6 +1,7 @@
 <template>
     <div class="league-preview">
-      <h2> {{leagueName}}</h2>
+      <br>
+      <h2 class="superliga"> ~{{leagueName}}~</h2>
         Season: {{ season }}
         <br/>
         Stage: {{ stage }}
@@ -16,6 +17,7 @@
       :time="next_game.time" 
       :stadium="next_game.stadium"
       :key="next_game.id"></GamePreview>
+      <br>
   </div>
 </template>
 
@@ -67,11 +69,21 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
 .league-preview {
   display: inline-block;
   width: 100%;
   position: relative;
   background-color: whitesmoke;
+  border-radius: 30px;
+  color: black;
+  opacity: 80%;
+    font-family: 'Aladin', cursive;
+    font-size: 24px;
+    margin-left: 10px;
+      text-align: center;
+
+
 
 }
 
@@ -84,6 +96,11 @@ export default {
 .league-preview .league-content {
   width: 100%;
   overflow: hidden;
+}
+.superliga{
+  font-family: 'Aladin', cursive;
+  color:darkorange;
+  font-size: 50px;
 }
 
 

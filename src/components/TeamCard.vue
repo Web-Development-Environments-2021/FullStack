@@ -1,14 +1,40 @@
 <template>
     <div class="team-preview">
+      <h1>{{name}}</h1>
       <img class="mx-auto" style="width: 200px;" :src="logo">
-      <b-card
 
-    >
-      <b-card-title>{{name}}</b-card-title>
-      <b-card-text>
         <br/>
-        Coach: {{ coach }}
-        <br/><div class="container">
+        <br>        
+                <div class="games">
+        <div><br>
+        <h3>Past game:</h3>
+        <div v-if="false">
+    <PastGame
+      v-for="g in team_history"
+      :id="g.game_id" 
+      :home_team="g.home_team" 
+      :away_team="g.away_team" 
+      :date="g.date" 
+      :time="g.time" 
+      :stadium="g.stadium"
+      :key="g.id"></PastGame></div>
+      <h5>There is no past games</h5>
+    </div>
+<div><br><h3>Future game:</h3>
+      <GamePreview
+      v-for="g in team_future"
+      :id="g.game_id" 
+      :home_team="g.home_team" 
+      :away_team="g.away_team" 
+      :date="g.date" 
+      :time="g.time" 
+      :stadium="g.stadium"
+      :key="g.id"></GamePreview>
+</div>
+        </div>
+        <br>
+        <h3>Players:</h3>
+        <div class="container">
           <div class="row">
         <PlayerPreview
         v-for="p in players"
@@ -20,26 +46,7 @@
         :key="p.name">
         </PlayerPreview></div></div>
         <br/>
-        <PastGame
-      v-for="g in team_history"
-      :id="g.game_id" 
-      :hostTeam="g.home_team" 
-      :guestTeam="g.away_team" 
-      :date="g.date" 
-      :hour="g.time" 
-      :key="g.id"></PastGame>
-      <br/>
-      <GamePreview
-      v-for="g in team_future"
-      :id="g.game_id" 
-      :hostTeam="g.home_team" 
-      :guestTeam="g.away_team" 
-      :date="g.date" 
-      :hour="g.time" 
-      :key="g.id"></GamePreview>
-      </b-card-text>
-      <b-button href="#" variant="primary">Go somewhere</b-button>
-    </b-card>
+
   </div>
 </template>
 
@@ -93,8 +100,14 @@ export default {
         console.log("///this is after for");
         this.name=team.teamName;
         this.logo=team.teamLogo;
-        this.team_history=team.team_history;
-        this.team_future=team.team_future;
+
+        const response= await this.axios.get(
+          `http://localhost:3000/team//FutureAndPast_teamGames/${team.teamName}`,
+        );
+        const teamGames = response.data;
+        console.log(teamGames);
+        this.team_history=teamGames.team_history;
+        this.team_future=teamGames.team_future;
         console.log(this.team_history);
         console.log(this.team_future);
       } 
@@ -110,10 +123,21 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
 .team-preview{
   align-items: center;
+   font-family: 'Aladin', cursive;
+   margin-left: -50px;
+   float: unset;
 
 }
+.games{
+      display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 3%;
+        align-items: center;
+}
+
 
 
 

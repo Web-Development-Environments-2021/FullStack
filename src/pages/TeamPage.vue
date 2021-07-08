@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1 class="title">Team Card</h1>
+
     <TeamCard title="Team Card" class="Team Card" />
   </div>
 </template>
