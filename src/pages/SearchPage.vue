@@ -213,8 +213,6 @@ export default {
       this.teams_names=JSON.parse(teams_names);
   }     
   },
-
-  
   mounted(){
     this.showInfo()
     this.team_from_local();

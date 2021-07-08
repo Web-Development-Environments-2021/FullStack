@@ -1,17 +1,5 @@
 <template>
-  <!-- <div class="game-preview">
-    <div :title="id" class="game-title">
-      <b>Game Id:</b> {{ id }}
-      <br>
-    </div>
-    <ul class="game-content">
-      <li> host: {{ hostTeam }}</li>
-      <li> guest: {{ guestTeam }}</li>
-      <li> date: {{ date }}</li>
-      <li> time: {{ hour }}</li>
-      <li> stadium: {{ stadium }}</li>
-    </ul>
-  </div> -->
+
   <div class="game">
     <div class="grid">
     <div class="date">
@@ -21,12 +9,27 @@
         <img :src="away_pic" width="20px">
         <div>{{away_team}}</div>
         <div class="stadium">{{stadium}}</div>
+        
+        <div class="favorite">
+          <a>
+              <FavoriteGameLike
+                v-if="$root.store.username"
+                :gameId="this.id"
+              ></FavoriteGameLike>
+          </a>
+        </div>
     </div>
+  
+
   </div>
 </template>
 
 <script>
+import FavoriteGameLike from './FavoriteGameLike.vue'
+
 export default {
+  components: { FavoriteGameLike },
+
   name: "GamePreview",
   data(){
     return{
@@ -128,7 +131,7 @@ export default {
 }
 .grid{
   display: grid;
-    grid-template-columns: 140px 80px 20px 30px 30px 80px 200px;
+    grid-template-columns: 140px 80px 20px 30px 30px 80px 100px 30px;
     grid-column-gap: 8px;
     align-items: center;
     padding: 10px 0 12px 0;

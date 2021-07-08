@@ -64,9 +64,7 @@ export default {
 
     changeState(){
       this.isFavorite=!this.isFavorite
-      // this.FavoriteGames
       if( this.isFavorite){
-        // to add to favorite
         this.FavoriteGames.push(this.playerId)
         this.addToFavorite();
       }

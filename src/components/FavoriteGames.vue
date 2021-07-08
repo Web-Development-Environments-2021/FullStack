@@ -29,11 +29,8 @@ export default {
     async updateGames(){
       console.log("response");
       try {
-        const response = await this.axios.get(
-          "http://localhost:3000/user/favoriteGames",
-        );
-        console.log(response);
-        const games = response.data;
+        let games_names = sessionStorage.getItem('FavoriteGames');
+        const games=JSON.parse(games_names);
         this.games = [];
         this.games.push(...games);
         this.favoriteGame=true
