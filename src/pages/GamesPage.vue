@@ -10,6 +10,8 @@
       :date="g.date" 
       :time="g.time" 
       :stadium="g.stadium"
+              :events="g.events"
+
       :key="g.id"></PastGame>
     </div>
 <div><br><h2>Future game:</h2>
@@ -21,6 +23,7 @@
       :date="g.date" 
       :time="g.time" 
       :stadium="g.stadium"
+
       :key="g.id"></GamePreview>
 </div>
 </div>
@@ -51,8 +54,8 @@ export default {
         console.log(Games);
         this.team_history=Games.pastGames;
         this.team_future=Games.futureGames;
-        console.log(this.team_history);
-        console.log(this.team_future);
+
+
       } 
       catch (error) {
       }

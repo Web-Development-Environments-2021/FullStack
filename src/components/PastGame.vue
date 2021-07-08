@@ -1,17 +1,5 @@
 <template>
-  <!-- <div class="game-preview">
-    <div :title="id" class="game-title">
-      <b>Game Id:</b> {{ id }}
-      <br>
-    </div>
-    <ul class="game-content">
-      <li> host: {{ hostTeam }}</li>
-      <li> guest: {{ guestTeam }}</li>
-      <li> date: {{ date }}</li>
-      <li> time: {{ hour }}</li>
-      <li> stadium: {{ stadium }}</li>
-    </ul>
-  </div> -->
+
   <div class="game">
     <div class="grid">
     <div class="date">
@@ -21,6 +9,12 @@
         <img :src="away_pic" width="20px">
         <div>{{away_team}}</div>
         <div class="stadium">{{stadium}}</div>
+    </div>
+    <div class="event" 
+    v-for="e in events"
+    :key="e.EventType"
+    >{{e}}
+
     </div>
   </div>
 </template>
@@ -57,6 +51,9 @@ export default {
       },
       stadium:{
         type:String,
+      },
+      events:{
+        type: Array,
       }
   }, 
   methods:{
@@ -72,11 +69,13 @@ export default {
         }
 
 }
+
     }
   },
   mounted(){
     console.log("game preview mounted")
     this.picOfTeams();
+    console.log(this.events);
   } 
 };
 </script>
