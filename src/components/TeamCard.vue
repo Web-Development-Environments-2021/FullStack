@@ -8,7 +8,7 @@
                 <div class="games">
         <div><br>
         <h3>Past game:</h3>
-        <div v-if="false">
+        <div v-if="this.past">
     <PastGame
       v-for="g in team_history"
       :id="g.game_id" 
@@ -17,10 +17,12 @@
       :date="g.date" 
       :time="g.time" 
       :stadium="g.stadium"
+      :events="g.events"
       :key="g.id"></PastGame></div>
-      <h5>There is no past games</h5>
+      <h5 v-else>There is no past games</h5>
     </div>
 <div><br><h3>Future game:</h3>
+<div v-if="this.future">
       <GamePreview
       v-for="g in team_future"
       :id="g.game_id" 
@@ -29,7 +31,9 @@
       :date="g.date" 
       :time="g.time" 
       :stadium="g.stadium"
-      :key="g.id"></GamePreview>
+      :key="g.id"></GamePreview></div>
+      <h5 v-else>There is no future games</h5>
+
 </div>
         </div>
         <br>
@@ -70,6 +74,8 @@ export default {
       players:[],
       team_history:[],
       team_future:[],
+      past:false,
+      future:false
     };
   },
   methods: {
@@ -110,6 +116,13 @@ export default {
         this.team_future=teamGames.team_future;
         console.log(this.team_history);
         console.log(this.team_future);
+        if (this.team_history.length>0){
+          this.past=true;
+        }
+        if (this.team_future.length>0){
+          this.future=true;
+        }
+        
       } 
       catch (error) {
       }

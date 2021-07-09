@@ -10,7 +10,9 @@
       :date="g.date" 
       :time="g.time" 
       :stadium="g.stadium"
-              :events="g.events"
+    :events="g.events"
+    :home_goal="g.home_goal"
+    :away_goal="g.away_goal"
 
       :key="g.id"></PastGame>
     </div>

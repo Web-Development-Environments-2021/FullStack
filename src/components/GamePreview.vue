@@ -128,7 +128,7 @@ export default {
 }
 .grid{
   display: grid;
-    grid-template-columns: 140px 80px 20px 30px 30px 80px 200px;
+    grid-template-columns: 140px 80px 20px 30px 20px 80px 200px;
     grid-column-gap: 8px;
     align-items: center;
     padding: 10px 0 12px 0;
