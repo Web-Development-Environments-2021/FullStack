@@ -34,7 +34,8 @@ export default {
   data(){
     return{
       home_pic:"",
-      away_pic:""
+      away_pic:"",
+      inFav:Boolean
     }
   },
   props: {
@@ -75,7 +76,8 @@ export default {
         }
 
 }
-    }
+    },
+
   },
   mounted(){
     console.log("game preview mounted")

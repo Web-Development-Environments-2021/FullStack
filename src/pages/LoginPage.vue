@@ -101,14 +101,10 @@ export default {
             password: this.form.password
           }
         );
-        console.log("-----------response is:----------")
         console.log(response);
         if(response.data.user_id){
           sessionStorage.setItem('user_id', response.data.user_id);
           sessionStorage.setItem('FavoriteGames',JSON.stringify(response.data.favoriteGames));
-          // sessionStorage.setItem('FavoritePlayers',res.favoritePlayers);
-          // sessionStorage.setItem('FavoriteTeam',res.favoritePlayers);
-
 
         }
         this.$root.loggedIn = true;

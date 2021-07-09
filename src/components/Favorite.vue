@@ -78,6 +78,10 @@ export default {
       }
     }
     ,
+
+
+
+    
     async addToFavorite() {
       try {
          await this.axios.post(
@@ -94,7 +98,7 @@ export default {
 
       async deleteFromFavorite() {
       try {
-        await this.axios.delete(
+        await this.axios.post(
           `http://localhost:3000/user/deleteFavoritePlayer`,
           {
               playerId: this.playerId

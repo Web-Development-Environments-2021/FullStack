@@ -8,7 +8,11 @@
       :date="g.date" 
       :time="g.time" 
       :stadium="g.stadium"
-      :key="g.id"></GamePreview>
+      :key="g.id"
+
+
+      >
+      </GamePreview>
   </div>
 </template>
 
@@ -40,10 +44,11 @@ export default {
         console.log(error);
         this.favoriteGame=false
       }
-    }
+    },
+
   }, 
+
   mounted(){
-    console.log("favorite games mounted");
     this.updateGames(); 
   }
 };

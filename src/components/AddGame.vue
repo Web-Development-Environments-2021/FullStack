@@ -1,6 +1,8 @@
 <template>
 
   <b-container class="addGame" fluid>
+
+    
       <h2>Add new game:</h2>
       <b-form @submit.prevent="submit">
     <b-row class="my-1">

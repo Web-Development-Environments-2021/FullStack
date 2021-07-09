@@ -22,9 +22,7 @@ export default {
   name: "favoriteGameLike",
   data() {
     return {
-      isFavorite:false,
-      FavoriteGames:[]
-    };
+      isFavorite:false };
   },
   props: {
     gameId: {
@@ -33,34 +31,44 @@ export default {
   },
   mounted() {
       this.game_id=this.$root.id;
+      this.checkIfInFavorite();
   },
   methods: {
+    checkIfInFavorite(){
+    let games_ids=[];
+    let games=JSON.parse( sessionStorage.getItem('FavoriteGames'));
+    if (games){
+    games.map((element) => games_ids.push(element.game_id));
+    this.FavoriteGames= games_ids;
+    this.isFavorite=games_ids.includes(this.gameId)
+
+      }
+    },
     changeState(){
-        console.log("game id from prop"+this.gameId);
-      if( this.$root.FavoriteGamesArr.includes()){
-        // to add to favorite
-        this.FavoriteGames.push(this.playerId)
-        this.addToFavorite();
+      if(this.isFavorite){
+        this.isFavorite=false;
+        this.FavoriteGames.pop(this.gameId)
+        sessionStorage.setItem('FavoriteGames',JSON.stringify(this.FavoriteGames));
+        this.deleteFromFavorite();
       }
       else{
-        //to delete from fav server
-          for (var i=0; i< this.FavoriteGames.length;i++){
-          if (this.FavoriteGames[i]==this.playerId)
-            this.FavoriteGames.splice(i, 1);
-        }
-          this.deleteFromFavorite();
+        this.isFavorite=true;      
+        this.FavoriteGames.push(this.gameId);
+        sessionStorage.setItem('FavoriteGames',JSON.stringify(this.FavoriteGames));
+        this.addToFavorite();
+
       }
     }
     ,
+  
     async addToFavorite() {
       try {
          await this.axios.post(
-          `http://localhost:3000/user/addGamePlayer`,
+          `http://localhost:3000/user/addFavoriteGame`,
           {
-              gameId: this.playerId
+              gameId: this.gameId
           }
         );
-        this.isFavorite = true;
       } catch (error) {
         console.log(error);
       }
@@ -68,18 +76,19 @@ export default {
 
       async deleteFromFavorite() {
       try {
-        await this.axios.delete(
+        console.log(this.gameId);
+        await this.axios.post(
           `http://localhost:3000/user/deleteFavoriteGame`,
           {
-              gameId: this.playerId
+            "gameId":this.gameId
           }
         );
-        this.isFavorite = false;
       } catch (error) {
         console.log(error);
       }
     },
   },
+
 };
 </script>
 
