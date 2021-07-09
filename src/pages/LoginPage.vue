@@ -105,7 +105,7 @@ export default {
         console.log(response);
         if(response.data.user_id){
           sessionStorage.setItem('user_id', response.data.user_id);
-          sessionStorage.setItem('FavoriteGames',response.data.favoriteGames);
+          sessionStorage.setItem('FavoriteGames',JSON.stringify(response.data.favoriteGames));
           // sessionStorage.setItem('FavoritePlayers',res.favoritePlayers);
           // sessionStorage.setItem('FavoriteTeam',res.favoritePlayers);
 
