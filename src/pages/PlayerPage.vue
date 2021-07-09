@@ -14,12 +14,12 @@ export default {
 };
 </script>
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Acme&family=Dancing+Script&family=Fondamento&family=Montserrat:wght@100&family=Shadows+Into+Light&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
 
 .container{
     text-align: center;
     background-color: rgb(190, 187, 187);
-  font-family: cursive, bold;
+      font-family: 'Aladin', cursive;
   color:black;
 
 }

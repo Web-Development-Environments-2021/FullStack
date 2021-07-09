@@ -4,28 +4,42 @@
     <div class="grid">
     <div class="date">
       {{date.substr(0,10)}}</div>
-    <div>{{home_team}}</div><img :src="home_pic" width="20px">
-        <div class="time">{{time.substr(11,12).substr(0,5)}}</div>
+      <div>{{home_team}}</div>
+      <img :src="home_pic" width="20px">
+        <div v-if="this.result" class="res">{{home_goal}}:{{away_goal}}</div>
+        <div v-else>----</div>
         <img :src="away_pic" width="20px">
         <div>{{away_team}}</div>
         <div class="stadium">{{stadium}}</div>
+        <div>
+  <b-button v-b-toggle.collapse-1 variant="primary">Events</b-button>
+  <b-collapse id="collapse-1" class="mt-2">
+    <b-card style="width:500px">
+      <p class="card-text" v-for="e in events" :key="e.EventType">{{e.date.substr(0,10)}}, {{e.time.substr(11,11).substr(0,5)}}, {{e.minute}}, {{e.description}}, {{e.EventType}}</p>
+      <!-- <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
+      <b-collapse id="collapse-1-inner" class="mt-2">
+        <b-card>Hello!</b-card>
+      </b-collapse> -->
+    </b-card>
+  </b-collapse>
+</div>
     </div>
-    <div class="event" 
-    v-for="e in events"
-    :key="e.EventType"
-    >{{e}}
+    <!-- <Events :events="events"></Events> -->
 
-    </div>
   </div>
 </template>
 
 <script>
 export default {
+  // components:{
+  //   Events
+  // },
   name: "GamePreview",
   data(){
     return{
       home_pic:"",
-      away_pic:""
+      away_pic:"",
+      result:false,
     }
   },
   props: {
@@ -52,6 +66,12 @@ export default {
       stadium:{
         type:String,
       },
+      home_goal:{
+        type:Number
+      },
+      away_goal:{
+        type:Number
+      },
       events:{
         type: Array,
       }
@@ -70,13 +90,18 @@ export default {
 
 }
 
-    }
+    },
+    
   },
   mounted(){
     console.log("game preview mounted")
     this.picOfTeams();
     console.log(this.events);
-  } 
+    if (this.home_goal!=null){
+      this.result=true;
+    }
+  } ,
+  
 };
 </script>
 
@@ -96,6 +121,7 @@ export default {
   font-size: 18px;
     display: grid;
         font-family: "Merienda", Helvetica, Arial;
+
 
 
 
@@ -127,7 +153,8 @@ export default {
 }
 .grid{
   display: grid;
-    grid-template-columns: 140px 80px 20px 30px 30px 80px 200px;
+    grid-template-columns: 120px 80px 20px 30px 30px 80px 90px 50px;
+
     grid-column-gap: 8px;
     align-items: center;
     padding: 10px 0 12px 0;
@@ -142,6 +169,9 @@ export default {
 .teams{
     display: flex;
 
+}
+.b-card{
+  width: 600px;
 }
 
 

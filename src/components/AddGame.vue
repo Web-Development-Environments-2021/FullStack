@@ -4,7 +4,7 @@
 
     
       <h2>Add new game:</h2>
-      <b-form @submit.prevent="submit">
+      <b-form @submit.prevent="onSubmit">
     <b-row class="my-1">
     <b-col sm="3">
         <label >Date:</label>
@@ -13,6 +13,9 @@
         <b-form-input :state="validateState('date')" v-model="$v.form.date.$model" id="type-date" type="date"></b-form-input>
         <b-form-invalid-feedback v-if="!$v.form.date.required">
         date is required
+      </b-form-invalid-feedback>
+      <b-form-invalid-feedback v-if="!$v.form.date.minValue">
+        must be future date
       </b-form-invalid-feedback>
       </b-col>
     </b-row>
@@ -38,9 +41,7 @@
         <b-form-invalid-feedback v-if="!$v.form.stadium.required">
           stadium is required
         </b-form-invalid-feedback>
-        <b-form-invalid-feedback v-if="!$v.form.stadium.alpha">
-          stadium alpha
-        </b-form-invalid-feedback>  
+  
       </b-col>
     </b-row>
 
@@ -66,7 +67,7 @@
           away team is required
         </b-form-invalid-feedback>
          <b-form-invalid-feedback
-          v-else-if="$v.form.away_team.sameAsHome">
+          v-else-if="!$v.form.away_team.sameAsHome">
           host team and away team must be diffrent
         </b-form-invalid-feedback>
       </b-col>
@@ -87,9 +88,9 @@
 <script>
 import {
   required,
-
   alpha,
-  sameAs
+  sameAs,
+  not
 
 } from "vuelidate/lib/validators";
 
@@ -105,7 +106,7 @@ import {
           away_team:"",
           stadium:"",
           date:"",
-          time:""
+          time:"",
           }
         
       }
@@ -122,10 +123,11 @@ import {
       },
       away_team: {
         required,
-        sameAsHome: sameAs("home_team")
+        sameAsHome: not(sameAs("home_team"))
       },
       date: {
         required,
+        minValue: value => value > new Date().toISOString()
       },
  
       time: {
@@ -138,13 +140,35 @@ import {
       const { $dirty, $error } = this.$v.form[param];
       return $dirty ? !$error : null;
     },
-        submit(){
-            console.log(this.form.date);
-            console.log(this.form.stadium);
-            console.log(this.form.time);
-            console.log(this.form.home_team);
-            console.log(this.form.away_team);
-        },
+        async submit() {
+      try {
+        const response = await this.axios.post(
+          "http://localhost:3000/unionRep/addNewGame",
+          {
+            date: this.form.date,
+            time: this.form.time,
+            home_team: this.form.home_team,
+            away_team: this.form.away_team,
+            stadium: this.form.stadium
+            }
+        );
+        console.log(response);
+
+      } catch (err) {
+        console.log(err.response);
+        this.form.submitError = err.response.data.message;
+      }
+    },
+    onSubmit() {
+      this.$v.form.$touch();
+      if (this.$v.form.$anyError) {
+        console.log(this.$v.form.errors);
+        return;
+      }
+      // console.log("register method go");
+      this.submit();
+    },
+       
         team_from_local(){
             let teams_names = localStorage.getItem('teams_name');
             this.teams_names=JSON.parse(teams_names);
@@ -157,6 +181,6 @@ import {
 </script>
 <style>
 .addGame{
-    width: 50%;
+    width: 100%;
 }
 </style>

@@ -1,8 +1,7 @@
  <template>
 
-  <div>
-    <h1 class="title">Search Page</h1>
-
+  <div class="search">
+<br>
 <b-form class="formSearch" @submit.prevent="showByQuery">
 <div class="gridButton">
     
@@ -54,7 +53,7 @@
       </label>
     </div>
     <div v-else class="col-auto my-1">
-      <label class="mr-sm-2" for="inlineFormCustomSelect">sort by:
+      <label class="mr-sm-2" for="inlineFormCustomSelect" style="color:white">sort by:
       <select  v-on:click="SortByTeam" v-model="sortBy" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
         <option selected>Choose...</option>
         <option value="3">team name: A-Z</option>
@@ -221,6 +220,8 @@ export default {
 };
 </script>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
+
  .formSearch {
   background-color: rgb(194, 191, 191);
   padding: 10px;
@@ -230,6 +231,7 @@ export default {
   align-items: center;
   text-align: center;
   border-radius: 10px;
+  opacity: 80%;
 
 
 }
@@ -266,6 +268,15 @@ align-items: center;
   grid-column-gap: 5px;
   align-items: center;
   color: black;
+
+}
+.search{
+    background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/v1625782410/zo3Qgy_htmneg.jpg");
+        font-family: 'Aladin', cursive;
+        background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+        
 
 }
 
