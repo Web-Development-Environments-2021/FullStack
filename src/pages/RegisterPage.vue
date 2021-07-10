@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container register">
     <h1 class="title">Register</h1>
     <b-form @submit.prevent="onRegister" @reset.prevent="onReset">
       
@@ -205,10 +205,7 @@
     >
       Register failed: {{ form.submitError }}
     </b-alert>
-    <!-- <b-card class="mt-3 md-3" header="Form Data Result">
-      <pre class="m-0"><strong>form:</strong> {{ form }}</pre>
-      <pre class="m-0"><strong>$v.form:</strong> {{ $v.form }}</pre>
-    </b-card> -->
+
   </div>
 </template>
 
@@ -279,9 +276,7 @@ export default {
     }
   },
   mounted() {
-    // console.log("mounted");
     this.countries.push(...countries);
-    // console.log($v);
   },
   methods: {
     validateState(param) {
@@ -321,7 +316,6 @@ export default {
         console.log(this.$v.form.errors);
         return;
       }
-      // console.log("register method go");
       this.Register();
     },
     onReset() {
@@ -344,5 +338,12 @@ export default {
 <style lang="scss" scoped>
 .container {
   max-width: 500px;
+  height: 80%;
+}
+.register{
+  overflow-x: hidden;
+  overflow-y:scroll;
+  max-height: 100%;
+  margin-left: 20%;
 }
 </style>

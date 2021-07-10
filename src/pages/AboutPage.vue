@@ -1,15 +1,16 @@
 <template>
   <div  class="about">
 
+
     
   <h1 class="text">
-      Niv Meiri and Hadassa Zenu are students on their third year of Software informations system engineering Degree. 
+      Niv Meiri and Hadassa Zenou are students in their third year of Software informations system engineering.
     <br/>
-    Hadassa had just gave birth to her new sweet baby-Dror , and had challenging semester. she is from Even Shmuel 
-    and love to play monopoly in her free time.
+    <br>
+    Hadassa recently gave birth to her new sweet baby-Dror. And faced the challenges of new motherhood and this challenging semester all at once. She is from Even Shmuel and loves to play monopoly in her free time.
     <br/>
     <br/>
-    Niv is from Gilon and love to run and play soccer in his free time.
+    Niv is from Gilon and loves to run and play soccer in his free time.
     <br/>
     here are some links to our projects.
     <br/>
@@ -38,6 +39,7 @@ export default {
 </script>
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
 
 .text{
     background-color: rgb(244, 245, 248);
@@ -64,7 +66,7 @@ background-position: center;
   background-size: cover;
     background-repeat: "no-repeat";
   background-size: '100% auto';
-      font-family: "Merienda", Helvetica, Arial;
+      font-family: 'Aladin', cursive;
 
 }
 

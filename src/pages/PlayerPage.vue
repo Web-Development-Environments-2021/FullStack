@@ -18,7 +18,6 @@ export default {
 
 .container{
     text-align: center;
-    background-color: rgb(190, 187, 187);
       font-family: 'Aladin', cursive;
   color:black;
 
@@ -27,18 +26,7 @@ body, html {
   height: 100%;
 }
 
-div.container {
-  /* The image used */
-  background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/c_scale,e_blur:461,h_535,w_1024/v1623842117/zUX4nJS-soccer-background-images_isi1kc.jpg");
 
-  /* Full height */
-  height: 100%;
-
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
 
 
 

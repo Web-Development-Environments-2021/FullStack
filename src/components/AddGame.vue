@@ -165,7 +165,6 @@ import {
         console.log(this.$v.form.errors);
         return;
       }
-      // console.log("register method go");
       this.submit();
     },
        

@@ -243,8 +243,8 @@ export default {
 .searchRes{
   overflow-x: hidden;
   overflow-y:scroll;
-  max-height: 520px;
-  margin-left: 10%;
+  max-height: 240px;
+  margin-left: 20%;
 
 }
 @import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
@@ -315,7 +315,7 @@ align-items: center;
   background-repeat: "reapet";
   background-size: '100% auto';
   background-attachment: fixed;
-  font-family: "Merienda", Helvetica, Arial;
+      font-family: 'Aladin', cursive;
 
 
 }

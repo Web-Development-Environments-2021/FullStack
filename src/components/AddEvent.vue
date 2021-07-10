@@ -49,16 +49,6 @@
       </b-col>
     </b-row>
 
-   <!-- <b-row class="my-1">
-    <b-col sm="3">
-        <label >game_id:</label>
-      </b-col>
-    <b-col sm="9">
-        <b-form-input :state="validateState('game_id')" v-model="$v.form.game_id.$model" ></b-form-input>
-        <b-form-invalid-feedback v-if="!$v.form.game_id.required">
-        </b-form-invalid-feedback>
-      </b-col>
-    </b-row> -->
 
 
     <b-button

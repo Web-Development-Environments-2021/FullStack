@@ -97,9 +97,9 @@ import AddEvent from "./AddEvent.vue";
       },
     data() {
       return {
-        fieldsPast: ['date', 'time', 'home_team', 'away_team','home_goal','away_goal', 'stadium', 'events','game_id'],
-        fieldsEvent:['date','time', 'minute', 'EventType','description','game_id'],
-        fieldsFuture: ['date', 'time', 'home_team', 'away_team', 'stadium','game_id'],
+        fieldsPast: ['date', 'time', 'home_team', 'away_team','home_goal','away_goal', 'stadium', 'events'],
+        fieldsEvent:['date','time', 'minute', 'EventType','description'],
+        fieldsFuture: ['date', 'time', 'home_team', 'away_team', 'stadium'],
 
 
       }

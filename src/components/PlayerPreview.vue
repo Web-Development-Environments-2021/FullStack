@@ -1,5 +1,5 @@
 <template>
-<div  class="player">
+<div  class="playerCard">
   <div  class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
     <router-link :to="{ name: 'playerPage', params: { playerId: player_id } }">
     <img
@@ -52,7 +52,7 @@ export default {
 
 
 
-.player{
+.playerCard{
     border-style: solid;
   border-radius: 20px;
   border-width: 2px;

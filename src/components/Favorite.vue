@@ -40,10 +40,9 @@ export default {
       try {
         const id = this.playerId;
         
-        let response = await this.axios.get(
-          `http://localhost:3000/user/favoritePlayers`
-        );
-        let players_details=response.data;
+
+        let players_details= JSON.parse( sessionStorage.getItem('Favoriteplayers'));
+;
         for (var ids=0; ids< players_details.length;ids++){
           this.FavoriteGames.push(players_details[ids].player_id);
         }
@@ -109,7 +108,29 @@ export default {
         console.log(error);
       }
     },
+
+
+   deleteFromSession(player_id){
+    let players=JSON.parse( sessionStorage.getItem('Favoriteplayers'));
+    if (players){
+    players.map((element) =>{
+      if  (element.player_id==player_id){
+        players.pop(player_id);
+      }
+    })}
+  sessionStorage.setItem('Favoriteplayers',JSON.stringify(players));
+    },
+
+  addToSession(){
+  let player={"game_id":this.gameId,"date":this.date,"away_team":this.away_team,"home_team":this.home_team,"stadium":this.stadium,"time":this.time}
+  console.log(game);
+  let players=JSON.parse( sessionStorage.getItem('Favoriteplayers'));
+  if(!players.includes(player)){
+    players.push(player);
+  }
+
   },
+  }
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
     <div class="player_card">
         <img class="mx-auto" style="width: 200px;" :src="image">
-        <b-card class="card" :title="name">
+        <b-card class="player" :title="name">
             
             <b-card-text>
             position:{{position}}
@@ -90,13 +90,10 @@ export default {
   display: inline-block;
   width: 50%;
   position: relative;
-  margin: 10px 10px;
+
       align-items: center;
       float: none;
-
 }
-
-
 
 .player_card .team-content {
   width: 100%;
@@ -107,15 +104,17 @@ export default {
     align-items: center;
 }
 
-.card{
+.player{
     color: rgb(8, 8, 8);
     border-style: solid;
-  border-radius: 10px;
+  border-radius: 6px;
   border-width: 5px;
   border-color:rgb(46, 47, 48);
-  font-size: 20px;
+  font-size: 16px;
+  opacity: 60%;
     
 }
+
 
 
 </style>

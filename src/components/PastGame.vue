@@ -16,24 +16,18 @@
   <b-collapse id="collapse-1" class="mt-2">
     <b-card style="width:500px">
       <p class="card-text" v-for="e in events" :key="e.EventType">{{e.date.substr(0,10)}}, {{e.time.substr(11,11).substr(0,5)}}, {{e.minute}}, {{e.description}}, {{e.EventType}}</p>
-      <!-- <b-button v-b-toggle.collapse-1-inner size="sm">Toggle Inner Collapse</b-button>
-      <b-collapse id="collapse-1-inner" class="mt-2">
-        <b-card>Hello!</b-card>
-      </b-collapse> -->
+
     </b-card>
   </b-collapse>
 </div>
     </div>
-    <!-- <Events :events="events"></Events> -->
 
   </div>
 </template>
 
 <script>
 export default {
-  // components:{
-  //   Events
-  // },
+
   name: "GamePreview",
   data(){
     return{

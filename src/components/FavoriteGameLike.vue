@@ -93,13 +93,11 @@ stadium:{
     changeState(){
       if(this.isFavorite){
         this.isFavorite=false;
-        // this.FavoriteGames.pop(this.gameId)
         this.deleteFromFavoriteServer();
         this.deleteFromSession(this.gameId);
       }
       else{
         this.isFavorite=true;      
-        // this.FavoriteGames.push(this.gameId);
         this.addToFavoriteServer();
         this.addToSession();
         

@@ -1,7 +1,7 @@
 <template>
   <div id="app">
 
-    <b-navbar class="navbar" toggleable="lg" variant="info" >
+    <b-navbar class="navbar" toggleable="lg" >
          
 <a class="navbar-brand" :to="{ name: 'main' }" href="#">
       <img src="./assets/Games-Soccer-icon.png" :to="{ name: 'main' }" href="#"  width="40" height="38">
@@ -96,7 +96,7 @@ width: 100%;
   background-repeat:space;
   background-size: cover;
   background-size: '100% auto';
-  font-family: "Merienda", Helvetica, Arial;
+      font-family: 'Aladin', cursive;
 
   
 }
@@ -114,7 +114,7 @@ width: 100%;
   color: #42b983;
 }
 .navbar{
-  background-color: black;
+  background-color: darkorange;
       color: darkorange;
       text-emphasis-color: darkorange;
       text-decoration-color: darkorange;
