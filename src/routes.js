@@ -27,6 +27,11 @@ const routes = [
     name: "favoriteGames",
     component: () => import("./pages/FavoriteGamesPage")
   },
+  {path: "/favoritePlayers",
+    name: "favoritePlayers",
+    component: () => import("./pages/FavoriteplayersPage")
+  }
+  ,
   {
     path: "/teamCard",
     name: "teamCard",

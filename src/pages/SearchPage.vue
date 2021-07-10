@@ -1,5 +1,5 @@
  <template>
-
+<div class="search_component">
   <div class="search">
 <br>
 <b-form class="formSearch" @submit.prevent="showByQuery">
@@ -41,8 +41,8 @@
       
       <b-button variant="success" type="submit" id="button"  >Search</b-button>
       </b-form>
-      <div v-if="ifPlayers" class="col-auto my-1">
-      <label class="mr-sm-2" for="inlineFormCustomSelect">sort by:
+      <div v-if="ifPlayers" class="col-auto my-1 sort_by">
+      <label class="mr-sm-2" for="inlineFormCustomSelect" style="font-size:15px;color:white ">Sort by:
       <select v-on:click="SortByPlayer" v-model="sortBy"  class="custom-select mr-sm-2" id="inlineFormCustomSelect">
         <option selected>Choose...</option>
         <option value="1">player name: A-Z</option>
@@ -52,7 +52,7 @@
       </select>
       </label>
     </div>
-    <div v-else class="col-auto my-1">
+    <div v-else class="col-auto my-1  ">
       <label class="mr-sm-2" for="inlineFormCustomSelect" style="color:white">sort by:
       <select  v-on:click="SortByTeam" v-model="sortBy" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
         <option selected>Choose...</option>
@@ -61,8 +61,9 @@
       </select>
       </label>
     </div>
-          <div v-if="ifPlayers" class="container">
-          <div class="row">
+    <div >
+          <div v-if="ifPlayers" class="container searchRes" >
+          <div class="row ">
         <PlayerPreview
         v-for="p in players_by_query"
         :name="p.playerName"
@@ -72,7 +73,7 @@
         :teamName="p.team_name"
         :key="p.name">
         </PlayerPreview></div></div>
-        <div v-else class="container">
+        <div v-else class="container  searchRes">
           <div class="row">
         <TeamPreview
         v-for="t in teams_by_query"
@@ -81,10 +82,11 @@
         :id="t.teamId"
         :key="t.teamId">
         </TeamPreview></div></div>
+    </div>
 
 
 
-
+</div>
 </div>
   
 </template>
@@ -150,6 +152,8 @@ export default {
             }
             if (good){
               this.players_by_query.push(this.players[player]);
+              sessionStorage.setItem('last_search',JSON.stringify({"search":this.searchQuery,"ifPlayers":true}));
+
             }
           }
         }
@@ -157,9 +161,13 @@ export default {
       else{
         this.teams_by_query=[];
         for(let team in this.players){
+          if(this.teams[team].teamName){
           if (this.teams[team].teamName.toLowerCase().includes(this.searchQuery)){
             this.teams_by_query.push(this.teams[team]);
+            sessionStorage.setItem('last_search',JSON.stringify({"search":this.searchQuery,"ifPlayers":false}));
+
           }
+        }
         }
       }
     },
@@ -211,22 +219,46 @@ export default {
       let teams_names = localStorage.getItem('teams_name');
       this.teams_names=JSON.parse(teams_names);
   }     
-  },
+  ,
+  checkLastSearch(){
+     let last_search=JSON.parse(sessionStorage.getItem("last_search"));
+     console.log(last_search);
+     if(last_search){
+    this.ifPlayers=last_search["ifPlayers"];
+    this.searchQuery=last_search["search"];
+    this.showByQuery();
+     }
+    
+  }},
 
   mounted(){
     this.showInfo()
     this.team_from_local();
+    this.checkLastSearch();
   }
 };
 </script>
 <style>
+
+.searchRes{
+  overflow-x: hidden;
+  overflow-y:scroll;
+  max-height: 520px;
+  margin-left: 10%;
+
+}
 @import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
+.sort_by{
+  position: absolute;
+  top:120px;
+  left:5px;
+}
 
  .formSearch {
   background-color: rgb(194, 191, 191);
   padding: 10px;
   width: 60%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   margin-left: 20%;
   align-items: center;
   text-align: center;
@@ -251,10 +283,12 @@ export default {
 
 }
 .input-group-text{
+  
   font-size: 12px;
 }
 
 #search-input{
+  
   width: 80%;
   font-size: 20px;
 }
@@ -270,13 +304,19 @@ align-items: center;
   color: black;
 
 }
-.search{
-    background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/v1625782410/zo3Qgy_htmneg.jpg");
-        font-family: 'Aladin', cursive;
-        background-position: center;
+
+.search_component{
+  width: 100%;
+  background-image: url("../assets/soccer_field.jpeg");
+  height: 550px;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-        
+  background-repeat: "reapet";
+  background-size: '100% auto';
+  background-attachment: fixed;
+  font-family: "Merienda", Helvetica, Arial;
+
 
 }
 

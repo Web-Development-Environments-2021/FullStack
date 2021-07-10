@@ -9,25 +9,25 @@
         Season_id: {{season_id}}
         <br/>
         <br>
-        Next_game:<GamePreview
+        Next_game:<NextGame
       :id="next_game.game_id" 
       :home_team="next_game.home_team" 
       :away_team="next_game.away_team" 
       :date="next_game.date" 
       :time="next_game.time" 
       :stadium="next_game.stadium"
-      :key="next_game.id"></GamePreview>
+      :key="next_game.id"></NextGame>
       <br>
   </div>
 </template>
 
 <script>
-import GamePreview from "./GamePreview.vue";
+import NextGame from "./NextGame.vue";
 
 export default {
   name: "Leagueinfo",
   components: {
-    GamePreview
+    NextGame
   }, 
  data() {
     return {

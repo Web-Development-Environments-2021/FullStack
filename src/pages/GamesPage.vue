@@ -74,7 +74,9 @@ export default {
     display: grid;
     grid-template-columns: 48% 48%;
     grid-column-gap: 10px;
-        align-items: center;
+    align-items: center;
+
+
 
 }
 </style>

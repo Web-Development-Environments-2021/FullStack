@@ -75,7 +75,7 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
-  username: localStorage.username,
+  username: localStorage?.username,
   user_id: sessionStorage.user_id,
   //username: "guest",
   login(username) {

@@ -1,7 +1,5 @@
 <template>
-
     <b-container>
-
         <span class="hears">
             <svg v-if="this.isFavorite" v-on:click="changeState" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
@@ -22,12 +20,40 @@ export default {
   name: "favoriteGameLike",
   data() {
     return {
-      isFavorite:false };
+      isFavorite:false
+      ,FavoriteGames:[] };
   },
   props: {
     gameId: {
       type: Number,
     },
+    id: {
+  type: Number,
+  //required: true
+},
+home_team: {
+  type: String,
+  //required: true
+},
+away_team: {
+  type: String,
+  //required: true
+},
+date: {
+  type: String,
+  //required: true
+},
+time: {
+  type: String,
+  //required: true
+},
+stadium:{
+  type:String,
+}
+
+  },
+  computed:{
+
   },
   mounted() {
       this.game_id=this.$root.id;
@@ -44,24 +70,45 @@ export default {
 
       }
     },
+    deleteFromSession(game_id){
+    let games=JSON.parse( sessionStorage.getItem('FavoriteGames'));
+    if (games){
+    games.map((element) =>{
+      if  (element.game_id==game_id){
+        games.pop(game_id);
+      }
+    })}
+  sessionStorage.setItem('FavoriteGames',JSON.stringify(games));
+    },
+
+  addToSession(){
+  let game={"game_id":this.gameId,"date":this.date,"away_team":this.away_team,"home_team":this.home_team,"stadium":this.stadium,"time":this.time}
+  console.log(game);
+  let games=JSON.parse( sessionStorage.getItem('FavoriteGames'));
+  if(!games.includes(game)){
+    games.push(game);
+  }
+  sessionStorage.setItem('FavoriteGames',JSON.stringify(games));
+    },
     changeState(){
       if(this.isFavorite){
         this.isFavorite=false;
-        this.FavoriteGames.pop(this.gameId)
-        sessionStorage.setItem('FavoriteGames',JSON.stringify(this.FavoriteGames));
-        this.deleteFromFavorite();
+        // this.FavoriteGames.pop(this.gameId)
+        this.deleteFromFavoriteServer();
+        this.deleteFromSession(this.gameId);
       }
       else{
         this.isFavorite=true;      
-        this.FavoriteGames.push(this.gameId);
-        sessionStorage.setItem('FavoriteGames',JSON.stringify(this.FavoriteGames));
-        this.addToFavorite();
+        // this.FavoriteGames.push(this.gameId);
+        this.addToFavoriteServer();
+        this.addToSession();
+        
 
       }
     }
     ,
   
-    async addToFavorite() {
+    async addToFavoriteServer() {
       try {
          await this.axios.post(
           `http://localhost:3000/user/addFavoriteGame`,
@@ -74,13 +121,13 @@ export default {
       }
     },
 
-      async deleteFromFavorite() {
+      async deleteFromFavoriteServer() {
       try {
         console.log(this.gameId);
         await this.axios.post(
           `http://localhost:3000/user/deleteFavoriteGame`,
           {
-            "gameId":this.gameId
+            gameId:this.gameId
           }
         );
       } catch (error) {

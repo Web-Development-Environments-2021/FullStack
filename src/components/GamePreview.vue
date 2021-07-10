@@ -2,10 +2,10 @@
 
   <div class="game">
     <div class="grid">
-    <div class="date">
+    <div class="date" v-if="date">
       {{date.substr(0,10)}}</div>
     <div>{{home_team}}</div><img :src="home_pic" width="20px">
-        <div class="time">{{time.substr(11,12).substr(0,5)}}</div>
+        <div class="time" v-if="time">{{time.substr(11,12).substr(0,5)}}</div>
         <img :src="away_pic" width="20px">
         <div>{{away_team}}</div>
         <div class="stadium">{{stadium}}</div>
@@ -15,6 +15,11 @@
               <FavoriteGameLike
                 v-if="$root.store.username"
                 :gameId="this.id"
+                :home_team="this.home_team"
+                :away_team="this.away_team"
+                :date="this.date"
+                :time="this.time"
+                :stadium="this.stadium"
               ></FavoriteGameLike>
           </a>
         </div>
@@ -139,7 +144,7 @@ export default {
     padding: 10px 0 12px 0;
     grid-auto-rows: 30px;
     width: 100%;
-    font-size: 14px;
+    font-size: 20px;
     margin-left: 10px;
           font-family: 'Aladin', cursive;
 

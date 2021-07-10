@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <GamePreview
       v-for="g in games"
       :id="g.game_id" 
@@ -54,4 +54,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>

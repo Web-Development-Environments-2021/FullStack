@@ -26,7 +26,6 @@ export default {
           `http://localhost:3000/league/getSeasonGames`,
         );
         const Games = response.data;
-        console.log(Games);
         this.team_history=Games.pastGames;
         this.team_future=Games.futureGames;
 
@@ -45,11 +44,7 @@ export default {
 @import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
 
 .manage{
-    background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/v1625782410/zo3Qgy_htmneg.jpg");
-        font-family: 'Aladin', cursive;
-        background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+
           font-family: 'Aladin', cursive;
         align-items: center;
         text-align: center;

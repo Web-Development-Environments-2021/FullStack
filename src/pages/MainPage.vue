@@ -20,7 +20,6 @@ import FavoriteGames from "../components/FavoriteGamesMax3";
 import LoginPage from "../pages/LoginPage";
 
 
-// import RegisterPage from "../pages/RegisterPage.vue";
 export default {
   components: {
     LeagueInfo, 
@@ -34,18 +33,10 @@ export default {
             "http://localhost:3000/Team/AllTeamsDetails"
           
           );
-
-
-          console.log(this.$root.store.login);
-          console.log(Details);
-          
           localStorage.setItem('teams', JSON.stringify(Details.data.teams));
           localStorage.setItem('players', JSON.stringify(Details.data.players));
           localStorage.setItem('players_name', JSON.stringify(Details.data.players_name));
           localStorage.setItem('teams_name', JSON.stringify(Details.data.teams_name));
-
-
-
 
       } 
       catch (err) {
@@ -69,19 +60,6 @@ export default {
 
 @import url('https://fonts.googleapis.com/css2?family=Aladin&display=swap');
 
-.main{
-  
-width: 100%;
-  background-image: url("https://res.cloudinary.com/dyi0kcag6/image/upload/v1625744808/Qtyjme_d6mwpa.jpg");
-height: 550px;
-background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-    background-repeat: "no-repeat";
-  background-size: '100% auto';
-      font-family: "Merienda", Helvetica, Arial;
-
-}
 .grid-main{
   display: grid;
   grid-template-columns: 48% 50%;

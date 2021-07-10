@@ -116,6 +116,20 @@ export default {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
+        try{
+        let players_res = await this.axios.get(
+          "http://localhost:3000/user/favoritePlayers"
+        );
+        console.log( players_res);
+        if(players_res.data){
+        sessionStorage.setItem('Favoriteplayers',JSON.stringify(players_res.data));
+        }}
+        catch(err){
+        console.log(err);
+        }
+
+
+
     },
     onLogin() {
       // console.log("login method called");

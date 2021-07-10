@@ -27,17 +27,14 @@ export default {
   },
   methods: {
     async updateGames(){
-      console.log("response");
       try {
-        const response = await this.axios.get(
-          "http://localhost:3000/user/max3FavoriteGames",
-        );
-        console.log(response);
-        const games = response.data;
+        let games_names = sessionStorage.getItem('FavoriteGames');
+        let max_len=games_names.length;
+        let min_num=Math.min(3,max_len)
+        const games=JSON.parse(games_names).slice(0,min_num);
         this.games = [];
         this.games.push(...games);
         this.favoriteGame=true
-        console.log(response);
       } catch (error) {
         console.log("error in update games")
         console.log(error);
