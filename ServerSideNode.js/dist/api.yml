@@ -1,0 +1,760 @@
+---
+openapi: 3.0.0
+info:
+  title: Simple Inventory API
+  description: This is a simple API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+
+tags:
+- name: user
+  description: Operations about user
+- name: player
+- name: coach
+- name: team
+- name: auth
+paths:
+  /player/playerInfoCard/{playerId}:
+      get:
+        summary: get full deatils about a player
+        description: useful for player page
+        tags:
+          - player
+        parameters:
+          - in: path
+            name: playerId
+            description: player's id
+            required: true
+            schema:
+              type: integer
+        responses:
+          "200":
+            description: data about the player
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/playerCard"
+          "404":
+            description: playerId is not exists
+
+  /player/searchPlayer/{playerName}:
+      get:
+        summary: get full deatils about a player
+        description: useful for player page
+        tags:
+          - player
+        parameters:
+          - in: path
+            name: playerName
+            description: player's Name
+            required: true
+            schema:
+              type: string   
+          - in: query
+            name: position
+            description: player's position
+            required: false
+            schema:
+              type: string
+          - in: query
+            name: teamName
+            description: player's team
+            required: false
+            schema:
+              type: string      
+        responses:
+          "200":
+            description: data about the player
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/playerPreview'
+
+          "404":
+            description: playerId is not exists
+
+ 
+  /league/getDetails:
+      get:
+        tags:
+          - league
+        summary: Return the details about the current league
+        responses:
+          "200":
+            description: data about the current league returned
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/league"
+          "400":
+            description: wrong input parameters
+
+  /league/getSeasonGames:
+      get:
+        tags:
+          - league
+        summary: Return all the game the current league and season
+        responses:
+          "200":
+            description: data about the current season's games returned
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/seasonGames"
+          "400":
+            description: wrong input parameters
+
+  /team/teamFullDetails/{teamId}:
+      get:
+        summary: get full deatils about a team
+        description: useful for team page
+        tags:
+          - team
+        parameters:
+          - in: path
+            name: teamId
+            description: team's id
+            required: true
+            schema:
+              type: integer
+        responses:
+          "200":
+            description: data about the team
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/team"
+          "404":
+            description: teamId is not exists
+
+  /team/FutureAndPast_teamGames/{teamName}:
+      get:
+        summary: get all team's games
+        description: useful for team page
+        tags:
+          - team
+        parameters:
+          - in: path
+            name: teamName
+            description: team's name
+            required: true
+            schema:
+              type: integer
+        responses:
+          "200":
+            description: data about the team
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/team"
+          "404":
+            description: teamId is not exists
+
+
+  /team/AllTeamsDetails:
+    get:
+      summary: get full deatils of all the teams
+      description: useful for all teams
+      tags:
+        - team
+      responses:
+        "200":
+          description: data about the team
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/team"
+        "404":
+          description: teamId is not exists
+  /register:
+    post:
+      tags:
+      - auth
+      summary: new user has been created
+      description: creating new user
+      requestBody:
+        description: succesfully added to system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/user'
+        required: true
+      responses:
+        "201":
+          description: succesfully added to system
+        "400":
+          description: bad params!
+  /login:
+    post:
+      tags:
+      - auth
+      summary: user are entered to the system
+      description: user are login
+      requestBody:
+        description: succesfully added to system
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login'
+        required: true
+      responses:
+        "201":
+          description: succesfully login to system
+        "400":
+          description: bad params!
+  /logout:
+    post:
+      tags:
+      - auth
+      summary: Logs out current user from the system
+      description: log out from the system
+      parameters: []
+      responses:
+        "200":
+          description: The user logged out succesfully.
+  /user/favoriteGames:
+    get:
+      tags:
+      - user
+      summary: ' Returns the favorite games of the user'
+      description: Find  favorite games according to the user
+      operationId: getFavoriteGames
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/futureGame'
+        "204":
+          description: There is no favorite games
+  /user/max3FavoriteGames:
+    get:
+      tags:
+      - user
+      summary: ' Returns max 3 favorite games of the user'
+      description: Find  favorite games according to the user and return max 3 of them
+      operationId: getMax3FavoriteGames
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/futureGame'
+        "204":
+          description: There is no favorite games
+  /user/favoritePlayers:
+    get:
+      tags:
+      - user
+      summary: ' Returns the favorite players of the user'
+      description: Find  favorite players according to the user
+      operationId: getFavoritePlayers
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/playerPreview'
+        "404":
+          description: there is no favorite games
+  /user/favoriteTeams:
+    get:
+      tags:
+      - user
+      summary: ' Returns the favorite teams of the user'
+      description: Find  favorite teams according to the user
+      operationId: getFavoriteTeams
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/team'
+        "404":
+          description: there is no favorite teams
+  
+
+  /team/searchTeam/{teamName}:
+    get:
+      tags:
+      - team
+      summary: Find team according to its name
+      description: return team according to the query (name/full name)
+      operationId: searchTeam
+      parameters:
+      - name: teamName
+        in: path
+        description: name of team to return
+        required: true
+        style: simple
+        explode: false
+        content:
+          application/json:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/team'
+        "204":
+          description: No team found for the search params
+  /user/addFavoritePlayer:
+    post:
+      tags:
+      - user
+      summary: mark a player as a favorite
+      description: add a new favorite player to the user's favorites
+      operationId: addFavoritePlayer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "200":
+          description: success
+        "409":
+          description: this player already tags as favorite
+
+  /user/deleteFavoritePlayer:
+    post:
+      tags:
+      - user
+      summary: delete a player from  the favorites
+      description: delete favorite player from   user's favorites
+      operationId: deleteFavoritePlayer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+      responses:
+        "200":
+          description: success
+        "409":
+          description: this player isnot exist in  favorites
+
+  /user/addFavoriteTeam:
+    post:
+      tags:
+      - user
+      summary: mark a team as a favorite
+      description: add a new favorite team to the user's favorites
+      operationId: addFavoriteTeam
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_1'
+      responses:
+        "200":
+          description: success
+        "409":
+          description: this team already tags as favorite
+  /user/addFavoriteGame:
+    post:
+      tags:
+      - user
+      summary: mark a game as a favorite
+      description: add a new favorite game to the user's favorites
+      operationId: addFavoriteGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_2'
+      responses:
+        "200":
+          description: success
+        "409":
+          description: this game already tags as favorite
+
+
+  /user/deleteFavoriteGame:
+    post:
+      tags:
+      - user
+      summary: delete a game as a favorite
+      description: remobe game from  user's favorites
+      operationId: deleteFavoriteGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_2'
+      responses:
+        "200":
+          description: success
+        "409":
+          description: the games isnt exist in favorites
+
+
+  /unionRep/addNewGame:
+    post:
+      tags:
+      - unionRep
+      summary: create new game
+      description: create new game and add to the system
+      operationId: addNewGame
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/futureGame'
+        required: true
+      responses:
+        "201":
+          description: succesfully added to system
+        "400":
+          description: bad params!
+        "401":
+          description: you are not a union representative
+  /unionRep/addResult:
+    post:
+      tags:
+      - unionRep
+      summary: add result
+      description: add result to a game that took place
+      operationId: addResult
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body_3'
+        required: true
+      responses:
+        "201":
+          description: succesfully added to the game
+        "400":
+          description: bad params!
+        "401":
+          description: you are not a union representative
+  /unionRep/addEvent:
+    post:
+      tags:
+      - unionRep
+      summary: add event
+      description: add event to a game that took place
+      operationId: addEvent
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/event'
+        required: true
+      responses:
+        "201":
+          description: succesfully added to the game
+        "400":
+          description: bad params!
+        "401":
+          description: you are not a union representative
+components:
+  schemas:
+    user:
+      type: object
+      properties:
+        username:
+          maxLength: 8
+          minLength: 3
+          type: string
+          description: username contrains between 3 to 8 letters only
+          example: Drori
+        firstname:
+          type: string
+          description: user's first name
+          example: Dror
+        lastname:
+          type: string
+          description: user's last name
+          example: Siminovsky
+        country:
+          type: string
+          description: from countries list
+          example: Israel
+        password:
+          maxLength: 10
+          minLength: 5
+          type: string
+          description: user's password contrains between 5 to 10 letters and should contain at least 1 special char
+          example: '@12345'
+        confirmedPassword:
+          maxLength: 10
+          minLength: 5
+          type: string
+          description: user's password contrains between 5 to 10 letters and should contain at least 1 special char
+          example: '@12345'
+        email:
+          type: string
+          example: drori@gmail.com
+        profileImage:
+          type: string
+          format: url
+          example: https://www.google.com
+        isUnionRep:
+          type: boolean
+          example: 1
+      description: model containing user info
+    login:
+      type: object
+      properties:
+        username:
+          maxLength: 8
+          minLength: 3
+          type: string
+          description: username contrains between 3 to 8 letters only
+          example: Drori
+        password:
+          maxLength: 10
+          minLength: 5
+          type: string
+          description: user's password contrains between 5 to 10 letters and should contain at least 1 special char
+          example: '@12345'
+    playerPreview:
+      type: object
+      properties:
+        fullName:
+          type: string
+          example: Cristiano Ronaldo
+        groupName:
+          type: string
+          example: Juventus
+        picture:
+          type: string
+          format: url
+          example: https://www.google.com/search?q=ronaldo&tbm=isch&ved=2ahUKEwiZ553y8s3wAhVSgc4BHYgYA5gQ2-cCegQIABAA&oq=ronaldo&gs_lcp=CgNpbWcQAzIFCAAQsQMyAggAMgIIADIICAAQsQMQgwEyAggAMgIIADICCAAyAggAMgIIADICCAA6BAgAEAM6BAgAEEM6BwgAELEDEENQzKMMWMe-DGCWwQxoAHAAeACAAaMCiAHUCpIBBTAuNi4xmAEAoAEBqgELZ3dzLXdpei1pbWfAAQE&sclient=img&ei=GeegYNn2CNKCur4PiLGMwAk&bih=553&biw=1280&rlz=1C1CHZL_enIL833IL833&safe=active#imgrc=B1-_nkTDWaykrM
+        position:
+          type: number
+          example: 7
+    coachPreview:
+      type: object
+      properties:
+        fullName:
+          type: string
+          example: Zinedine Zidane
+        groupName:
+          type: string
+          example: Real Madrid
+        picture:
+          type: string
+          format: url
+          example: https://www.google.com/search?q=Zinedine+Zidane&tbm=isch&ved=2ahUKEwjNhOTV883wAhUCihoKHcYjDu8Q2-cCegQIABAA&oq=Zinedine+Zidane&gs_lcp=CgNpbWcQAzICCAAyAggAMgQIABAeMgQIABAeMgQIABAeMgQIABAeMgQIABAeMgQIABAeMgQIABAeMgQIABAeULrMEFi6zBBgxNIQaABwAHgAgAGtAYgBrQGSAQMwLjGYAQCgAQGqAQtnd3Mtd2l6LWltZ8ABAQ&sclient=img&ei=6eegYI3sN4KUasbHuPgO&bih=553&biw=1280&rlz=1C1CHZL_enIL833IL833&safe=active
+    playerCard:
+      type: object
+      properties:
+        playerPreview:
+          $ref: '#/components/schemas/playerPreview'
+        commonName:
+          type: string
+          example: Ronaldo
+        nation:
+          type: string
+          example: Portugal
+        dateOfBirth:
+          type: string
+          format: date
+        countryOfBirth:
+          type: string
+          example: Portugal
+        height:
+          type: number
+          format: float
+          example: 1.87
+        weight:
+          type: number
+          format: float
+          example: 84
+    coachCard:
+      type: object
+      properties:
+        coachPreview:
+          $ref: '#/components/schemas/coachPreview'
+        commonName:
+          type: string
+          example: Zidan
+        nation:
+          type: string
+          example: France
+        dateOfBirth:
+          type: string
+          format: date
+        countryOfBirth:
+          type: string
+          example: France
+    futureGame:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+        time:
+          type: string
+          format: time
+          example: 18:30
+        home_team:
+          type: string
+          example: Real Madrid
+        away_team:
+          type: string
+          example: Barcelona
+        stadium:
+          type: string
+          example: Camp NOU
+    pastGame:
+      type: object
+      properties:
+        gameDetails:
+          $ref: '#/components/schemas/futureGame'
+        result:
+          type: string
+          example: home 2:1 away
+        scheduleEvent:
+          type: array
+          items:
+            $ref: '#/components/schemas/pastGame_scheduleEvent'
+    team:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Real Madrid
+        logo:
+          type: string
+          format: url
+          example: https://www.google.com/search?q=real+madrid&tbm=isch&ved=2ahUKEwi-44DZ9M3wAhUM0oUKHVwgB1oQ2-cCegQIABAA&oq=real+madrid&gs_lcp=CgNpbWcQAzIHCAAQsQMQQzIECAAQQzICCAAyAggAMgIIADICCAAyAggAMgIIADICCAAyAggAOgUIABCxAzoECAAQA1C5oDdYw7k3YPq6N2gAcAB4AIABzAGIAY4PkgEGMC4xMC4xmAEAoAEBqgELZ3dzLXdpei1pbWfAAQE&sclient=img&ei=_eigYP7wBoyklwTcwJzQBQ&bih=553&biw=1280&rlz=1C1CHZL_enIL833IL833&safe=active#imgrc=1y-wf1Vu9pHFrM
+    teamCard:
+      type: object
+      properties:
+        teamDetails:
+          $ref: '#/components/schemas/team'
+        players:
+          type: array
+          items:
+            type: string
+            example: '["T. Courtios","A. Lunin","R. Varane","..."]'
+        coach:
+          type: string
+          example: Zidan
+        pastGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/teamCard_pastGames'
+        futureGame:
+          type: array
+          items:
+            $ref: '#/components/schemas/teamCard_futureGame'
+    league:
+      type: object
+      properties:
+        name:
+          type: string
+          example: LaLiga
+        season:
+          type: string
+          example: 2018-2019
+        stage:
+          type: string
+          example: "18"
+        nextGame:
+          $ref: '#/components/schemas/teamCard_futureGame'
+    seasonGames:
+      type: object
+      properties:
+        pastGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/pastGame'
+        futureGames:
+          type: array
+          items:
+            $ref: '#/components/schemas/futureGame'
+    event:
+      type: object
+      properties:
+        game_id:
+          type: number
+          example: 1
+        minute:
+          type: number
+          example: 73
+        eventType:
+          $ref: '#/components/schemas/eventDescription'
+        description:
+          type: string
+          example: Gate for Messi
+    eventDescription:
+      type: string
+      enum:
+      - Goal
+      - Offside
+      - Foul
+      - Red Card
+      - Yellow card
+      - Injury
+      - Substitution
+    body:
+      properties:
+        playerId:
+          type: integer
+    body_1:
+      properties:
+        teamId:
+          type: integer
+    body_2:
+      properties:
+        gameId:
+          type: number
+    body_3:
+      properties:
+        game_id:
+          type: integer
+        home_goal:
+          type: string
+        away_goal:
+          type: string
+    useraddScheduleEvent_events:
+      type: object
+      properties:
+        event:
+          $ref: '#/components/schemas/event'
+    pastGame_scheduleEvent:
+      type: object
+      properties:
+        details:
+          $ref: '#/components/schemas/event'
+    teamCard_pastGames:
+      type: object
+      properties:
+        details:
+          $ref: '#/components/schemas/pastGame'
+    teamCard_futureGame:
+      type: object
+      properties:
+        details:
+          $ref: '#/components/schemas/futureGame'
+    event_description:
+      type: object
+      properties:
+        description:
+          $ref: '#/components/schemas/eventDescription'
