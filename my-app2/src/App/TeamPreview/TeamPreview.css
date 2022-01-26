@@ -1,0 +1,10 @@
+.teamCard{
+    font-family: 'Aladin', cursive;
+
+}
+.teamCard:hover{
+    opacity: 92%;
+    border-style: solid;
+    border-color: rgb(224, 222, 222);
+    
+}

@@ -73,12 +73,12 @@ router.get("/AllTeamsDetails", async (req, res, next) => {
     }
   );
 
-  let players={};
+  let players=[];
 
   let players_name=[];
   let teams_name=[];
 
-  let to_return_dict={};
+  let to_return_dict=[];
 
   league.data.data.map((team)=>{
     teams_name.push(
@@ -87,21 +87,13 @@ router.get("/AllTeamsDetails", async (req, res, next) => {
     let players_id=[]
 
     team.squad.data.map((player)=>{
-      players[player.player.data.player_id]={
-      playerName: player.player.data.fullname,
-      position :player.player.data.position_id,
-      playerId: player.player.data.player_id,
-      teamId :player.player.data.team_id,
-      team_name: team.name,
-      height : player.player.data.height,
-      weight: player.player.data.weight,
-      image : player.player.data.image_path,
-      nationality: player.player.data.nationality,
-      birthdate : player.player.data.birthdate,
-      birthcountry: player.player.data.birthcountry,
-      common_name:player.player.data.common_name,
-
-                }
+      players.push({
+      player_id:player.player.data.player_id,
+      position: player.player.data.position_id,
+      name: player.player.data.fullname,
+      picture: player.player.data.image_path,
+      teamName:team.name,
+      })
       players_id.push(
         player.player.data.player_id
       )  
@@ -112,15 +104,16 @@ router.get("/AllTeamsDetails", async (req, res, next) => {
 
     }
     )
-    to_return_dict[team.id]={
-      teamName: team.name,
-      teamLogo :team.logo_path,
-      teamId : team.id,
-      players: players_id
-    }
+    to_return_dict.push({
+      logo:team.logo_path,
+      name:team.name,
+      id: team.id,
+    })
     
   })
-  dict={"players":players,"teams":to_return_dict,"players_name":players_name,"teams_name":teams_name};
+  // dict={"players":players,"teams":to_return_dict,"players_name":players_name,"teams_name":teams_name};
+  dict={"players":players,"teams":to_return_dict,"teams_name":teams_name};
+
   res.send( dict );
 
   }

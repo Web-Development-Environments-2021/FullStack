@@ -3,7 +3,7 @@ const DButils = require("./routes/utils/DButils");
 const axios = require("axios");
 const bcrypt = require("bcryptjs");
 
-require("dotenv").config();
+// require("dotenv").config();
 
 var express = require("express");
 var path = require("path");

@@ -15,6 +15,7 @@
       team: {{teamName}}
       <br>
       position: {{position}}
+      
        
   </div>
 
@@ -44,6 +45,8 @@ export default {
       
   }, 
   mounted(){
+
+
   } 
 };
 </script>
