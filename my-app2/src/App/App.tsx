@@ -55,7 +55,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
     borderRadius: 20 / 2,
   },
 }));
-const positionOptions = ["Position",1,2,3,4,5,6,7,8,9];
+
+const positionOptions = ["Position","1","2","3","4","5","6","7","8","9"];
 const teamsOptions=['Team','København', 'Silkeborg', 'Brøndby', 'SønderjyskE', 'Midtjylland', 'AaB', 'OB', 'Randers', 'Nordsjælland', 'Viborg', 'AGF', 'Vejle'];
 
 function App() {
@@ -69,7 +70,7 @@ function App() {
   const [pos, setpos] = React.useState('Position');
   const [team, setTeam] = React.useState('Team');
   const [searchField, setSearchField] = React.useState("");
-  const [player_team, setPlayerTeam] = React.useState('  Search Players');
+  const [player_team, setPlayerTeam] = React.useState('Search Players');
 
   React.useEffect(() => {
     axios
@@ -89,24 +90,24 @@ function App() {
       setSearchField(e.target.value);
     };
     function chooseSearch(){
-      if (player_team=="  Search Players"){
-        setPlayerTeam('  Search Teams')
+      if (player_team==="Search Players"){
+        setPlayerTeam('Search Teams')
       }
       else{
-        setPlayerTeam('  Search Players')
+        setPlayerTeam('Search Players')
       }
     }
     function onSearch(){
-      if (player_team=="  Search Players"){
+      if (player_team==="Search Players"){
         var temp_players: playerInfo[] = [];
 
         allPlayers.map((player)=>{
           var good=true;
           if (player.name.toLowerCase().includes(searchField)){
-            if (pos!='Position' && player.position!=null && player.position.toString()!=pos){
+            if (pos!=='Position' && player.position!==null && player.position.toString()!==pos){
                 good=false;
               }
-            if (team!='Team' && player.teamName!=team){
+            if (team!=='Team' && player.teamName!==team){
               good=false;
             }
             if (good){
@@ -157,9 +158,9 @@ function App() {
           </Stack>
         </Grid>
         <Grid item xs={12}>
-          <input className="inputField" type = "search" placeholder = {player_team} onChange = {handleChangeSearch} value={searchField}/>
+          <input  className="inputField" type = "search" placeholder = {player_team} onChange = {handleChangeSearch} value={searchField}/>
         </Grid>
-        {(player_team=='  Search Players')?(
+        {(player_team==='Search Players')?(
           <Grid container spacing={0} className="containFilter" >
             <Grid item xs={6}>
               <FormControl  className="selectButton">
@@ -197,7 +198,7 @@ function App() {
       </div>
       {isSearch?(
         <Grid className="componenet_grid" container spacing={1} style={{maxHeight: 407,width:"92%",display:"inline-flex",marginTop:"4px", overflow: 'auto'}}>
-        {(player_team=="  Search Players")?(
+        {(player_team==="Search Players")?(
           players.map((player) => (
             <Grid item xs={1.7}>
               <PlayerPreview  player_id={player.player_id} position={player.position} name={player.name} picture={player.picture} teamName={player.teamName} key={`${player.player_id}`}/>

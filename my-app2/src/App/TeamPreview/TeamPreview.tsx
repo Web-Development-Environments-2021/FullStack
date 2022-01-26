@@ -1,14 +1,12 @@
 import React,{FC} from 'react';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { teamInfo } from '../../Interfaces';
 import "./TeamPreview.css"
 const TeamPreview: FC<teamInfo> = (props: teamInfo) => {
-  const { logo,name,id} = props;
+  const { logo,name} = props;
 
   return (
     <Card className="teamCard" sx={{ maxWidth: 180,height:150 , borderRadius:"20px"}}>
