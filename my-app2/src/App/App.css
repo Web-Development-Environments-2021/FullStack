@@ -124,3 +124,9 @@ background-color: orange;
 
 }
 
+.sortButton{
+  background-color: whitesmoke;
+  border-radius: 20px;
+  opacity: 98%;
+}
+

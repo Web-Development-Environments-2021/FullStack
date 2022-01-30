@@ -71,6 +71,7 @@ function App() {
   const [team, setTeam] = React.useState('Team');
   const [searchField, setSearchField] = React.useState("");
   const [player_team, setPlayerTeam] = React.useState('Search Players');
+  const [sortVal, setSortVal] = React.useState('0');
 
   React.useEffect(() => {
     axios
@@ -89,14 +90,24 @@ function App() {
     const handleChangeSearch = (e: SelectChangeEvent) => {
       setSearchField(e.target.value);
     };
+
+    const handleChangeSort = (event: SelectChangeEvent) =>{
+      setSortVal(event.target.value as string);
+    };
+    SortByPlayer();
+    SortByTeam();
     function chooseSearch(){
       if (player_team==="Search Players"){
-        setPlayerTeam('Search Teams')
+        setPlayerTeam('Search Teams');
+        setSortVal('0');
+
       }
       else{
         setPlayerTeam('Search Players')
+        setSortVal('0');
       }
     }
+
     function onSearch(){
       if (player_team==="Search Players"){
         var temp_players: playerInfo[] = [];
@@ -130,6 +141,44 @@ function App() {
       setpos("Position");
       setTeam("Team");
     }
+
+    function SortByPlayer(){
+      if (sortVal === "1") {
+      players.sort((a, b) => {
+        return a.name < b.name ? -1 : 1;
+      });
+    }
+    else if (sortVal === "2") {
+      players.sort((a, b) => {
+        return a.name > b.name ? -1 : 1;
+      });
+    }
+    else if (sortVal === "3") {
+      players.sort((a, b) => {
+        return a.teamName < b.teamName ? -1 : 1;
+      });
+    }
+    else if (sortVal === "4") {
+      players.sort((a, b) => {
+        return a.teamName > b.teamName ? -1 : 1;
+      });
+    }
+  }
+  function SortByTeam() {
+    if (sortVal === "3") {
+      teams.sort((a, b) => {
+        return a.name < b.name ? -1 : 1;
+      });
+    }
+    else if (sortVal === "4") {
+      teams.sort((a, b) => {
+        return a.name > b.name ? -1 : 1;
+      });
+    }
+  }
+
+
+
 
   const styles = {
     "&.MuiButton-root": {
@@ -196,9 +245,39 @@ function App() {
           <Button sx={styles} id='searchButton' variant="contained" onClick={onSearch} >Search</Button>
         </Grid>
       </div>
+      <Grid item xs={3}>
+        {(player_team==='Search Players')?(
+            <FormControl  className="sortButton">
+              <Select 
+              style={{height:30,borderRadius:15,width:150,fontFamily:"Aladin,cursiv"}}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={sortVal}
+                onChange={handleChangeSort}>
+                  <MenuItem style={{height:30,fontFamily:"Aladin,cursiv"}} value="0">Sort By:</MenuItem>
+                  <MenuItem style={{height:30,fontFamily:"Aladin,cursiv"}} value="1">player name: A-Z</MenuItem>
+                  <MenuItem style={{height:30,fontFamily:"Aladin,cursiv"}} value="2">player name: Z-A</MenuItem>):
+                  <MenuItem style={{height:30,fontFamily:"Aladin,cursiv"}} value="3">team name: A-Z</MenuItem>
+                  <MenuItem style={{height:30,fontFamily:"Aladin,cursiv"}} value="4">team name: Z-A</MenuItem>
+              </Select>
+            </FormControl>):(
+            <FormControl  className="sortButton">
+              <Select 
+              style={{height:30,borderRadius:15,width:150,fontFamily:"Aladin,cursiv"}}
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={sortVal}
+                onChange={handleChangeSort}>
+                  <MenuItem style={{height:30,fontFamily:"Aladin,cursiv"}} value="0">Sort By:</MenuItem>
+                  <MenuItem style={{height:30,fontFamily:"Aladin,cursiv"}} value="3">team name: A-Z</MenuItem>
+                  <MenuItem style={{height:30,fontFamily:"Aladin,cursiv"}} value="4">team name: Z-A</MenuItem>
+              </Select>
+            </FormControl>)}
+        </Grid>
       {isSearch?(
         <Grid className="componenet_grid" container spacing={1} style={{maxHeight: 407,width:"92%",display:"inline-flex",marginTop:"4px", overflow: 'auto'}}>
         {(player_team==="Search Players")?(
+          
           players.map((player) => (
             <Grid item xs={1.7}>
               <PlayerPreview  player_id={player.player_id} position={player.position} name={player.name} picture={player.picture} teamName={player.teamName} key={`${player.player_id}`}/>
